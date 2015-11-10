@@ -1,7 +1,7 @@
 # American Red Cross Smoke Alarm Project
 
 ### Big picture
-Help Red Cross Home Fire Preparedness Campaign target areas for smoke alarm installs.  Check out the repo [wiki](https://github.com/brooksandrew/arc_smoke_alarm/wiki) for more background information.
+Help Red Cross Home Fire Preparedness Campaign target areas for smoke alarm installs.  Check out the repo [wiki](https://github.com/home-fire-risk/smoke_alarm_map/wiki) for more background information.
 
 ### Sketch of requirements for visualization (working doc)
 * [Visualization requirements](https://docs.google.com/document/d/1K8WiLrH4ex72GTG7o_q8MVZE2zGCPyv8voxk1IVYZ2U)
