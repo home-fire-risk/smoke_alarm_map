@@ -12,5 +12,6 @@ Help Red Cross Home Fire Preparedness Campaign target areas for smoke alarm inst
 
 [model scoping working doc]: https://docs.google.com/document/d/1oJN-QwLVqFHOvrRNtW2KEAkNZ-PuFiqTwa8y3iXx1Sg/edit
 
-
+### Visualizations
+* [esri-leaflet-test.html](esri-leaflet-test.html) - quick test of the [esri-leaflet](https://github.com/Esri/esri-leaflet) plugin using Red Cross ArcGIS Online division, region, and chapter boundary feature layers, plus HFPC home visits. Those layers are reading in as geojson, not tiles, would need to be tiled or significantly simplified to be usable.
 
