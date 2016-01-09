@@ -16,3 +16,6 @@ Help Red Cross Home Fire Preparedness Campaign target areas for smoke alarm inst
 * [esri-leaflet-test.html](esri-leaflet-test.html) - quick test of the [esri-leaflet](https://github.com/Esri/esri-leaflet) plugin using Red Cross ArcGIS Online division, region, and chapter boundary feature layers, plus HFPC home visits. Esri layers are stored as geojson, not tiles, would need to be tiled or significantly simplified to be fast enough, or use local json instead.
 
 For conversations/questions that are awkward to carry out using GitHub issues, send an email to DataKind Red Cross core volunteers Hannah Recht (hrecht2@gmail.com) and Andrew Brooks (andrewbrooksct@gmail.com) and one of us will follow up with you.
+
+### Census tract shapefile
+To build a national shapefile of census tracts, download the [state-level files](ftp://ftp2.census.gov/geo/tiger/TIGER2013/TRACT/ ) and then run [buildnationalshp.sh](censustracts/buildnationalshp.sh). Note: This requires [gdal](http://www.gdal.org/index.html) installation and assumes you're in a *nix system. Resulting shapefile is not saved here due to size.
