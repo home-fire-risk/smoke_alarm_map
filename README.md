@@ -13,11 +13,11 @@ Help Red Cross Home Fire Preparedness Campaign target areas for smoke alarm inst
 [model scoping working doc]: https://docs.google.com/document/d/1oJN-QwLVqFHOvrRNtW2KEAkNZ-PuFiqTwa8y3iXx1Sg/edit
 
 ### Visualizations
-* [esri-leaflet-test.html](esri-leaflet-test.html) - quick test of the [esri-leaflet](https://github.com/Esri/esri-leaflet) plugin using Red Cross ArcGIS Online division, region, and chapter boundary feature layers, plus HFPC home visits. Esri layers are stored as geojson, not tiles, would need to be tiled or significantly simplified to be fast enough, or use local json instead.
-
 * [simplemap.html](simplemap.html) - incredibly simple map of risk scores by tract built with Tilemill and [mapbox.js](https://www.mapbox.com/mapbox.js/api/v2.2.3/). For fast tile export/development purposes, currently showing the lower 48 states up to zoom level 9.
 
-For conversations/questions that are awkward to carry out using GitHub issues, send an email to DataKind Red Cross core volunteers Hannah Recht (hrecht2@gmail.com) and Andrew Brooks (andrewbrooksct@gmail.com) and one of us will follow up with you.
+* [esri-leaflet-test.html](esri-leaflet-test.html) - quick test of the [esri-leaflet](https://github.com/Esri/esri-leaflet) plugin using Red Cross ArcGIS Online division, region, and chapter boundary feature layers, plus HFPC home visits. Esri layers are stored as geojson, not tiles, would need to be tiled or significantly simplified to be fast enough, or use local json instead.
 
 ### Census tract shapefile
-To build a national shapefile of census tracts, download the [state-level files](ftp://ftp2.census.gov/geo/tiger/TIGER2013/TRACT/ ) and then run [buildnationalshp.sh](censustracts/buildnationalshp.sh). Note: This requires [gdal](http://www.gdal.org/index.html) installation and assumes you're in a *nix system. Resulting shapefile is not saved here due to size.
+To build a national shapefile of census tracts, download the [state-level files](ftp://ftp2.census.gov/geo/tiger/TIGER2013/TRACT/) and then run [buildnationalshp.sh](censustracts/buildnationalshp.sh). Note: This requires [gdal](http://www.gdal.org/index.html) installation and assumes you're in a *nix system. Resulting shapefile is not saved here due to size.
+
+For conversations/questions that are awkward to carry out using GitHub issues, send an email to DataKind Red Cross core volunteers Hannah Recht (hrecht2@gmail.com) and Andrew Brooks (andrewbrooksct@gmail.com) and one of us will follow up with you.
