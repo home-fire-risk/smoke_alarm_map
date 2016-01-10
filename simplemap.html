@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Risk Map</title>
+    <meta charset="utf-8">
+
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <script src='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
+
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="map"></div>
+
+</body>
+
+<script>
+    var count = document.getElementById('count');
+
+    L.mapbox.accessToken = 'pk.eyJ1IjoiaHJlY2h0IiwiYSI6IlFwV2hZMlUifQ.dwfwZ5jzPU1xv2mYYVzXlQ';
+    var map = L.mapbox.map("map", 'mapbox.light', {
+            zoomControl: true,
+            fadeAnimation: false,
+            maxZoom: 9,
+            minZoom: 3
+        })
+        .setView([39.174360, -93.113837], 5);
+
+    var tracts = L.mapbox.tileLayer('hrecht.05w8rmkc').addTo(map);
+    var gridLayer = L.mapbox.gridLayer('hrecht.05w8rmkc').addTo(map);
+    var gridControl = L.mapbox.gridControl(gridLayer, {
+            follow: true
+        })
+        .addTo(map);
+</script>
+
+</html>
