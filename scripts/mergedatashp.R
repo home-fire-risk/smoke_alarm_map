@@ -17,13 +17,13 @@ risk$tract_geoid <- as.character(risk$tract_geoid)
 risk$GEOID <- sprintf("%011s", risk$tract_geoid)
 risk <- risk %>% select(GEOID,risk,division)
 
-ustracts <- readOGR("censustracts/ustracts","ustracts")
+ustracts <- readOGR("shapefiles/national","ustracts")
 risktracts <- merge(ustracts, risk , by="GEOID", all.x=T)
 
 # Remove some unneeded attribute columns
 risktracts <- risktracts[,c("GEOID", "NAME", "division", "risk")]
 
-writeOGR(risktracts, dsn="censustracts/riskshp", layer="riskshp", driver="ESRI Shapefile", overwrite_layer = T)
+writeOGR(risktracts, dsn="shapefiles/riskshp", layer="riskshp", driver="ESRI Shapefile", overwrite_layer = T)
 
 # Divide country by census region due to Mapbox zipped shapefile upload size limit - 260MB
 # http://www2.census.gov/geo/docs/maps-data/maps/reg_div.txt
@@ -38,7 +38,7 @@ midwest <- risktracts[(risktracts$division %in% midwestf),]
 south <- risktracts[(risktracts$division %in% southf),]
 west <- risktracts[(risktracts$division %in% westf),]
 
-writeOGR(east, dsn="censustracts/riskshp", layer="east", driver="ESRI Shapefile", overwrite_layer = T)
-writeOGR(midwest, dsn="censustracts/riskshp", layer="midwest", driver="ESRI Shapefile", overwrite_layer = T)
-writeOGR(south, dsn="censustracts/riskshp", layer="south", driver="ESRI Shapefile", overwrite_layer = T)
-writeOGR(west, dsn="censustracts/riskshp", layer="west", driver="ESRI Shapefile", overwrite_layer = T)
+writeOGR(east, dsn="shapefiles/riskshp", layer="east", driver="ESRI Shapefile", overwrite_layer = T)
+writeOGR(midwest, dsn="shapefiles/riskshp", layer="midwest", driver="ESRI Shapefile", overwrite_layer = T)
+writeOGR(south, dsn="shapefiles/riskshp", layer="south", driver="ESRI Shapefile", overwrite_layer = T)
+writeOGR(west, dsn="shapefiles/riskshp", layer="west", driver="ESRI Shapefile", overwrite_layer = T)

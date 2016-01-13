@@ -4,8 +4,5 @@ node_modules
 bower_components
 *.log
 .Rproj.user
-censustracts/original-files
-censustracts/ustracts
-censustracts/riskshp
-censustracts/ustracts-territories
+shapefiles/
 

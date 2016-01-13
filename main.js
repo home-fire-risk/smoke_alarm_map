@@ -85,10 +85,8 @@ map.on("mousemove", function (e) {
             for (r = 0; r < REGIONS.length; r++) {
                 map.setFilter(REGIONS[r] + 'hover', ["==", "GEOID", ""]);
             }
-
         }
     });
-
 });
 
 // Add zoom and rotation controls to the map.
