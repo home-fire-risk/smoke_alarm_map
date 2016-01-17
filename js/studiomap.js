@@ -11,7 +11,8 @@ var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/datakinddc/cijisuzms004z8wlxb9m6zh0y',
     zoom: 10,
-    center: [-77.014576, 38.899396]
+    center: [-77.014576, 38.899396],
+    minZoom: 4
 });
 
 //names of risk layers
