@@ -3,35 +3,12 @@
 
 <head>
     <meta charset='utf-8' />
-    <title>Risk score GL JS choropleth</title>
+    <title>Home fire risk tool</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.2/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.2/mapbox-gl.css' rel='stylesheet' />
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
-        
-        #map {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 100%;
-        }
-        
-        #sidebar {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            bottom: 15px;
-            width: 250px;
-            overflow: auto;
-            background: rgba(255, 255, 255, 0.8);
-            font-family: "Arial";
-            padding-left: 10px;
-        }
-    </style>
+
+    <link href='css/main.css' rel='stylesheet' />
 
 </head>
 
@@ -39,11 +16,16 @@
 
     <div id='map'></div>
     <div id='sidebar'>
-        <h1>Risk score</h1>
+        <h1>Home fire risk score</h1>
+
+        <nav id="menu">
+            <a class="active" href="#" id="toggle">Show/hide least risky areas</a>
+        </nav>
+
         <div id='tooltip'></div>
     </div>
 
-    <script src="js/main.js"></script>
+    <script src="js/studiomap.js"></script>
 
 </body>
 

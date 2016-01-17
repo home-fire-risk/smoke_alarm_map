@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Arial";
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+#sidebar {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    bottom: 15px;
+    width: 250px;
+    overflow: auto;
+    background: rgba(255, 255, 255, 0.8);
+    padding-left: 10px;
+}
+
+#menu {
+    background: #fff;
+    position: relative;
+    z-index: 1;
+    top: 0%;
+    margin-left: 5%;
+    border-radius: 3px;
+    width: 85%;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+#menu a {
+    font-size: 13px;
+    color: #404040;
+    display: block;
+    margin: 0;
+    padding: 0;
+    padding: 10px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+#menu a:last-child {
+    border: none;
+}
+
+#menu a:hover {
+    background-color: #f8f8f8;
+    color: #404040;
+}
+
+#menu a.active {
+    background-color: #742626;
+    color: #ffffff;
+}
+
+#menu a.active:hover {
+    background: #804242;
+}
+
+#tooltip {
+    margin-top: 1em;
+}

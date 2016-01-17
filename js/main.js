@@ -1,12 +1,12 @@
 //customize your choropleth
-var URLS = ['mapbox://hrecht.8hmjry9s', 'mapbox://hrecht.5i9z5y24', 'mapbox://hrecht.3lcifu35', 'mapbox://hrecht.2j1i486e'],
+var URLS = ['mapbox://datakinddc.04hkadfo', 'mapbox://datakinddc.2b90vyhy', 'mapbox://datakinddc.b0ujw98l', 'mapbox://datakinddc.cao4jei0'],
     METRIC = 'risk', //shapefile attribute to map - in this case, land area of census tract
     COLORS = ['#fef0d9', '#fdd49e', '#fdbb84', '#fc8d59', '#e34a33', '#b30000'], //colors to use in choropleth
     BREAKS = [0, 30, 40, 50, 60, 70], //breaks to use
     REGIONS = ['east', 'south', 'midwest', 'west'], //regions to add - saved in separate mapbox files due to upload limit
     FILTERUSE;
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiaHJlY2h0IiwiYSI6IlFwV2hZMlUifQ.dwfwZ5jzPU1xv2mYYVzXlQ';
+mapboxgl.accessToken = 'pk.eyJ1IjoiZGF0YWtpbmRkYyIsImEiOiJjaWppcmZtMHcwMnZ2dHlsdDlzenN0MnRqIn0.FsB8WZ_HKhb3mPa1MPXxdw';
 //create a map using the Mapbox Light theme, zoomed in to DC
 var map = new mapboxgl.Map({
     container: 'map',
