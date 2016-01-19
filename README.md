@@ -6,7 +6,6 @@ Goal: help the Red Cross Home Fire Preparedness Campaign target areas for smoke 
 * [Visualization requirements](https://docs.google.com/document/d/1K8WiLrH4ex72GTG7o_q8MVZE2zGCPyv8voxk1IVYZ2U)
 * [model scoping working doc](https://docs.google.com/document/d/1oJN-QwLVqFHOvrRNtW2KEAkNZ-PuFiqTwa8y3iXx1Sg/edit)
 
-
 ## How to contribute
 ### Skills needed
 * DESIGN!: designing the map itself (mainly Mapbox Studio) as well as general UI/UX design for the tool
