@@ -7,6 +7,7 @@ Goal: help the Red Cross Home Fire Preparedness Campaign target areas for smoke 
 * [model scoping working doc](https://docs.google.com/document/d/1oJN-QwLVqFHOvrRNtW2KEAkNZ-PuFiqTwa8y3iXx1Sg/edit)
 
 ## How to contribute
+Join the [DataKind DC meetup group](http://www.meetup.com/DataKind-DC/) to find out about work sessions. Or, contribute whenever you can.
 ### Skills needed
 * DESIGN!: designing the map itself (mainly Mapbox Studio) as well as general UI/UX design for the tool
 * General mapping and data visualization skills 
