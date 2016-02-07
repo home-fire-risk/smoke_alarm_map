@@ -17,6 +17,10 @@ download.file("http://www2.census.gov/geo/tiger/GENZ2014/shp/cb_2014_us_county_5
 unzip("shapefiles/cb_2014_us_county_500k.zip", exdir="shapefiles/cb_2014_us_county_500k/")
 counties <- readOGR("shapefiles/cb_2014_us_county_500k/","cb_2014_us_county_500k")
 
+# Help choose color breaks - do approx quantiles for now
+quantile(risk$risk, c(1/6, 2/6, 3/6, 4/6, 5/6))
+# 02-07-16 breaks: 34, 38, 41, 43, 46
+
 ########################################################################################################
 # Make counties dataset and save merged shapefile .zip
 ########################################################################################################
