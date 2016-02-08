@@ -48,7 +48,8 @@ map.on('style.load', function () {
         }, function (err, features) {
             if (!err && features.length) {
                 //show name and value in sidebar
-                document.getElementById('tooltip').innerHTML = ("Risk: " + Math.round(features[0].properties.risk) + "<br />" + features[0].properties.county + "<br />" + features[0].properties.chapter);
+                document.getElementById('tooltip-risk').innerHTML = "Risk score: " + Math.round(features[0].properties.risk);
+                document.getElementById('tooltip-name').innerHTML = features[0].properties.county + "<br />" + features[0].properties.chapter;
                 //for troubleshooting - show complete features info
                 //document.getElementById('tooltip').innerHTML = JSON.stringify(features, null, 2);
                 //show the border on hover
@@ -57,7 +58,8 @@ map.on('style.load', function () {
                                 }*/
             } else {
                 //if not hovering over a feature, remove hover border and set tooltip to empty
-                document.getElementById('tooltip').innerHTML = "";
+                document.getElementById('tooltip-risk').innerHTML = "";
+                document.getElementById('tooltip-name').innerHTML = "";
                 /*                for (r = 0; r < REGIONS.length; r++) {
                                     map.setFilter(REGIONS[r] + 'hover', ["==", "GEOID", ""]);
                                 }*/
