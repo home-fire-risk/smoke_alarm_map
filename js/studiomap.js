@@ -1,12 +1,11 @@
 //build choropleth layers in Studio rather than js for speed
 
 var RISKLAYERS = ['east1', 'east2', 'east3', 'east4', 'east5', 'east6', 'south1', 'south2', 'south3', 'south4', 'south5', 'south6', 'midwest1', 'midwest2', 'midwest3', 'midwest4', 'midwest5', 'midwest6', 'west1', 'west2', 'west3', 'west4', 'west5', 'west6', 'counties1', 'counties2', 'counties3', 'counties4', 'counties5', 'counties6'];
-//URLS = ['mapbox://datakinddc.04hkadfo', 'mapbox://datakinddc.2b90vyhy', 'mapbox://datakinddc.b0ujw98l', 'mapbox://datakinddc.cao4jei0'],
-REGIONS = ['east', 'south', 'midwest', 'west']; //regions to add - saved in separate mapbox files due to upload limit
+var REGIONS = ['east', 'south', 'midwest', 'west']; //regions to add - saved in separate mapbox files due to upload limit
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZGF0YWtpbmRkYyIsImEiOiJjaWppcmZtMHcwMnZ2dHlsdDlzenN0MnRqIn0.FsB8WZ_HKhb3mPa1MPXxdw';
 
-//create a map using the Mapbox Light theme, zoomed in to DC
+//create map zoomed in to DC
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/datakinddc/cijisuzms004z8wlxb9m6zh0y',
@@ -14,8 +13,6 @@ var map = new mapboxgl.Map({
     center: [-77.014576, 38.899396],
     minZoom: 3
 });
-
-//names of risk layers
 
 map.on('style.load', function () {
     //add a source for each region
@@ -49,9 +46,7 @@ map.on('style.load', function () {
             if (!err && features.length) {
                 //show name and value in sidebar
                 document.getElementById('tooltip-risk').innerHTML = Math.round(features[0].properties.risk);
-                if (features[0].properties.rank != undefined) {
-                    document.getElementById('tooltip-rank').innerHTML = features[0].properties.rank + "/" + features[0].properties.rankn;
-                }
+                document.getElementById('tooltip-rank').innerHTML = features[0].properties.rank + "/" + features[0].properties.rankn;
                 document.getElementById('tooltip-households').innerHTML = d3.format(",d")(features[0].properties.hoshlds);
                 document.getElementById('tooltip-income').innerHTML = d3.format("$,d")(features[0].properties.mdnnc_h);
                 if (features[0].properties.NAME != undefined) {
@@ -78,6 +73,7 @@ map.on('style.load', function () {
 document.getElementById('toggle').onclick = function (e) {
     e.preventDefault();
     e.stopPropagation();
+    //loop over risk groups 1-5
     for (i = 1; i < 6; i++) {
         var visibility = map.getLayoutProperty('counties' + i, 'visibility');
         if (visibility === 'visible') {
@@ -87,6 +83,7 @@ document.getElementById('toggle').onclick = function (e) {
             this.className = 'active';
             map.setLayoutProperty('counties' + i, 'visibility', 'visible');
         }
+        //loop over all regions (tract level)
         for (r = 0; r < REGIONS.length; r++) {
             var visibility = map.getLayoutProperty(REGIONS[r] + i, 'visibility');
             if (visibility === 'visible') {
