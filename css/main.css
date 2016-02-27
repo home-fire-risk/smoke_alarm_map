@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: "Arial";
+    font-family: "Roboto", Arial, serif;
 }
 
 #map {
@@ -23,11 +23,16 @@ body {
     padding-right: 10px;
 }
 
+h1.sidebar-title {
+    text-transform: uppercase;
+    font-weight: 100 !important;
+}
+
 #menu {
     background: #fff;
-    position: relative;
+    position: absolute;
     z-index: 1;
-    top: 0%;
+    top: 80%;
     margin-left: 5%;
     border-radius: 3px;
     width: 85%;
@@ -66,12 +71,38 @@ body {
 
 #tooltip {
     margin-top: 1em;
+    padding: 15px;
 }
-#tooltip-risk {
+
+.title {
+    padding-top: 6px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.risk {
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 400;
+    height: 90px;
+    border-bottom: thin solid #7e7e7e;
     margin-bottom: 6px;
 }
-#tooltip-name {
+
+.households,
+.income {
+    height: 60px;
+    border-bottom: thin solid #7e7e7e;
+    margin-bottom: 6px;
+}
+
+#tooltip-risk {
+    font-size: 24px;
+    margin-bottom: 6px;
+}
+
+#tooltip-name,
+#tooltip-tract {
     font-size: 14px;
+    margin-bottom: 4px;
 }

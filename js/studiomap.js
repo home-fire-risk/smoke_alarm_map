@@ -48,21 +48,27 @@ map.on('style.load', function () {
         }, function (err, features) {
             if (!err && features.length) {
                 //show name and value in sidebar
-                document.getElementById('tooltip-risk').innerHTML = "Risk score: " + Math.round(features[0].properties.risk);
+                document.getElementById('tooltip-risk').innerHTML = Math.round(features[0].properties.risk);
+                if (features[0].properties.rank != undefined) {
+                    document.getElementById('tooltip-rank').innerHTML = features[0].properties.rank + "/" + features[0].properties.rankn;
+                }
+                document.getElementById('tooltip-households').innerHTML = d3.format(",d")(features[0].properties.hoshlds);
+                document.getElementById('tooltip-income').innerHTML = d3.format("$,d")(features[0].properties.mdnnc_h);
+                if (features[0].properties.NAME != undefined) {
+                    document.getElementById('tooltip-tract').innerHTML = "Tract " + features[0].properties.NAME;
+                }
                 document.getElementById('tooltip-name').innerHTML = features[0].properties.county + "<br />" + features[0].properties.chapter;
+
                 //for troubleshooting - show complete features info
-                //document.getElementById('tooltip').innerHTML = JSON.stringify(features, null, 2);
-                //show the border on hover
-                /*                for (r = 0; r < REGIONS.length; r++) {
-                                    map.setFilter(REGIONS[r] + 'hover', ["==", "GEOID", features[0].properties.GEOID]);
-                                }*/
+                //document.getElementById('tooltip-name').innerHTML = JSON.stringify(features, null, 2);
             } else {
-                //if not hovering over a feature, remove hover border and set tooltip to empty
+                //if not hovering over a feature set tooltip to empty
                 document.getElementById('tooltip-risk').innerHTML = "";
+                document.getElementById('tooltip-rank').innerHTML = "";
+                document.getElementById('tooltip-households').innerHTML = "";
+                document.getElementById('tooltip-income').innerHTML = "";
+                document.getElementById('tooltip-tract').innerHTML = "";
                 document.getElementById('tooltip-name').innerHTML = "";
-                /*                for (r = 0; r < REGIONS.length; r++) {
-                                    map.setFilter(REGIONS[r] + 'hover', ["==", "GEOID", ""]);
-                                }*/
             }
         });
     });

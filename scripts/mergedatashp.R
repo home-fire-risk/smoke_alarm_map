@@ -34,6 +34,13 @@ riskc <- risk %>% filter(!is.na(state)) %>%
 	group_by(fips_county, county_name_long, chapter_name, region_name) %>%
 	summarize(risk = mean(risk_cnty)) %>%
 	rename(chapter = chapter_name, region = region_name, county = county_name_long)
+
+# Rank counties by risk (highest = 1) within RC regions
+riskc <- riskc %>% 
+	arrange(region, -risk) %>%
+	group_by(region) %>%
+	mutate(rank=row_number(), rankn = n_distinct(fips_county))
+	
 # Add quantile groups for mapping
 riskc$riskgroup <- as.integer(cut(riskc$risk, quantile(riskc$risk, probs=0:6/6), include.lowest=TRUE))
 
@@ -50,7 +57,7 @@ riskcounties <- merge(counties, riskc, by.x="GEOID", by.y="fips_county", all.x=T
 
 # Remove some unneeded attribute columns
 head(riskcounties@data)
-riskcounties@data <- riskcounties@data[,c("GEOID", "risk", "riskgroup", "county", "chapter", "region", "population", "households", "medianinc_hh", "medianage")]
+riskcounties@data <- riskcounties@data[,c("GEOID", "risk", "riskgroup", "county", "chapter", "region", "rank", "rankn", "population", "households", "medianinc_hh", "medianage")]
 
 # Write county shapefile and zip for Mapbox upload
 writeOGR(riskcounties, dsn="shapefiles/riskshp", layer="counties", driver="ESRI Shapefile", overwrite_layer = T)
@@ -62,31 +69,31 @@ system("zip -j shapefiles/riskshp/counties.zip shapefiles/riskshp/counties.dbf s
 
 # Merge to ACS tract info
 acstracts <- read.csv("data/acstracts.csv", stringsAsFactors = F, colClasses = c("fips_tract" = "character"))
-risk <- left_join(risk, acstracts, by=c("tract_geoid"="fips_tract"))
+riskt <- left_join(risk, acstracts, by=c("tract_geoid"="fips_tract"))
 
 # Rank tracts by risk (highest = 1) within RC regions
-risk <- risk %>% 
+riskt <- riskt %>% 
 	mutate(lowpop = ifelse(population < 100, 1, 0)) %>%
 	arrange(region_code, -risk) %>%
 	group_by(region_code, lowpop) %>%
-	mutate(rank_tract=row_number()) %>%
-	mutate(rank_tract = replace(rank_tract, lowpop==1, NA))
+	mutate(rank=row_number(), rankn = n_distinct(tract_geoid))%>%
+	mutate(rank = replace(rank, lowpop==1, NA))
 
 # Help choose color breaks - do approx quantiles for now
-quantile(risk$risk, c(1/6, 2/6, 3/6, 4/6, 5/6))
+quantile(riskt$risk, c(1/6, 2/6, 3/6, 4/6, 5/6))
 # 02-27-16 breaks: 35, 40, 45, 50, 56
 # Saving quantiles as a categorical variable makes it easier to update the map - set the breaks in R, not Mapbox
-risk$riskgroup <- as.integer(cut(risk$risk, quantile(risk$risk, probs=0:6/6), include.lowest=TRUE))
+riskt$riskgroup <- as.integer(cut(riskt$risk, quantile(riskt$risk, probs=0:6/6), include.lowest=TRUE))
 
 # Assign Puerto Rico to the South for shapefile creation
 states$statefip <- sprintf("%02s", states$statefip)
 states$division[states$statefip==72] <- 6
 states$region[states$statefip==72] <- 2
 
-riskt <- left_join(risk, states, by=c("state"="statefip"))
+riskt <- left_join(riskt, states, by=c("state"="statefip"))
 
 # Select variables needed for shapefile, merge, rename for .shp colname limit
-riskt <- riskt %>% select(tract_geoid, risk, riskgroup, division, chapter_name, region_name, county_name_long, population, households, lowpop, medianinc_hh, medianage) %>%
+riskt <- riskt %>% select(tract_geoid, risk, riskgroup, division, chapter_name, region_name, county_name_long, rank, rankn, population, households, lowpop, medianinc_hh, medianage) %>%
 	rename(chapter = chapter_name, region = region_name, county = county_name_long)
 riskt <- data.frame(riskt)
 
@@ -94,7 +101,7 @@ risktracts <- merge(tracts, riskt, by.x="GEOID", by.y="tract_geoid")
 
 # Remove some unneeded attribute columns
 head(risktracts@data)
-risktracts@data <- risktracts@data[,c("GEOID", "NAME", "division", "risk", "riskgroup", "county", "chapter", "region", "population", "households", "lowpop", "medianinc_hh", "medianage")]
+risktracts@data <- risktracts@data[,c("GEOID", "NAME", "division", "risk", "riskgroup", "county", "chapter", "region", "rank", "rankn", "population", "households", "lowpop", "medianinc_hh", "medianage")]
 summary(risktracts@data$risk)
 
 ########################################################################################################

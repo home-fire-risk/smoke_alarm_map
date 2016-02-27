@@ -3,11 +3,11 @@
 
 <head>
     <meta charset='utf-8' />
-    <title>Home fire risk tool</title>
+    <title>Home fire risk map</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.2/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.2/mapbox-gl.css' rel='stylesheet' />
-
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto">
     <link href='css/main.css' rel='stylesheet' />
 
 </head>
@@ -16,19 +16,40 @@
 
     <div id='map'></div>
     <div id='sidebar'>
-        <h1>Home fire risk score</h1>
-
-        <nav id="menu">
-            <a class="active" href="#" id="toggle">Show/hide least risky areas</a>
-        </nav>
+        <h1 class="sidebar-title">Home fire risk</h1>
 
         <div id='tooltip'>
-            <div id='tooltip-risk'></div>
-            <div id='tooltip-name'></div>
+            <div class="tooltip risk">
+                <div class="title">Risk score</div>
+                <div id='tooltip-risk'></div>
+                <div id="tooltip-rank"></div>
+            </div>
+
+            <div class="tooltip households">
+                <div class="title">Households</div>
+                <div id='tooltip-households'></div>
+            </div>
+
+            <div class="tooltip income">
+                <div class="title">Median household income</div>
+                <div id='tooltip-income'></div>
+            </div>
+
+            <div class="tooltip name">
+                <div class="title">Area</div>
+                <div id='tooltip-tract'></div>
+                <div id='tooltip-name'></div>
+            </div>
         </div>
+
+        <nav id="menu">
+            <a class="active" href="#" id="toggle">Adjust home fire risk layer</a>
+        </nav>
+
     </div>
 
     <script src="js/studiomap.js"></script>
+    <script src='lib/d3.v3.min.js'></script>
 
 </body>
 
