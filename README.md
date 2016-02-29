@@ -5,7 +5,7 @@ Goal: help the Red Cross Home Fire Preparedness Campaign target areas for smoke 
 ### Sketch of requirements for visualization (working doc)
 * [Visualization requirements](https://docs.google.com/document/d/1K8WiLrH4ex72GTG7o_q8MVZE2zGCPyv8voxk1IVYZ2U)
 * [model scoping working doc](https://docs.google.com/document/d/1oJN-QwLVqFHOvrRNtW2KEAkNZ-PuFiqTwa8y3iXx1Sg/edit)
-
+* current build of map: http://home-fire-risk.github.io/smoke_alarm_map/
 ## How to contribute
 Join the [DataKind DC meetup group](http://www.meetup.com/DataKind-DC/) to find out about work sessions. Or, contribute whenever you can.
 ### Skills needed
