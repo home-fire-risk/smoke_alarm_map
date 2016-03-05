@@ -28,18 +28,17 @@ h1.sidebar-title {
     font-weight: 100 !important;
 }
 
-#menu {
+.menu {
     background: #fff;
     position: absolute;
     z-index: 1;
-    top: 80%;
     margin-left: 5%;
     border-radius: 3px;
     width: 85%;
     border: 1px solid rgba(0, 0, 0, 0.4);
 }
 
-#menu a {
+.menu a {
     font-size: 13px;
     color: #404040;
     display: block;
@@ -51,22 +50,30 @@ h1.sidebar-title {
     text-align: center;
 }
 
-#menu a:last-child {
+.menu a:last-child {
     border: none;
 }
 
-#menu a:hover {
+.menu a:hover {
     background-color: #f8f8f8;
     color: #404040;
 }
 
-#menu a.active {
+.menu a.active {
     background-color: #742626;
     color: #ffffff;
 }
 
-#menu a.active:hover {
+.menu a.active:hover {
     background: #804242;
+}
+
+#layertoggle {
+    top: 75%;
+}
+
+#toptoggle {
+    top: 85%
 }
 
 #tooltip {
