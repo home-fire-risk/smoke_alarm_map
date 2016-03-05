@@ -29,14 +29,15 @@ map.on('style.load', function () {
             source: REGIONS[r] + 'src',
             'source-layer': REGIONS[r],
             layout: {
-                visibility: 'none'
+                visibility: 'visible'
             },
             paint: {
                 'fill-outline-color': "#ffffff",
                 'fill-color': "#000000",
                 'fill-opacity': 0.5
             },
-            filter: ['<=', "rank", 50]
+            //no tracts should match
+            filter: ['<', "rank", 0]
         });
     }
 
@@ -102,7 +103,7 @@ document.getElementById('toggle').onclick = function (e) {
 
 
 // show top N tracts in region
-document.getElementById('toptracts').onclick = function (e) {
+document.getElementById('top50').onclick = function (e) {
     e.preventDefault();
     e.stopPropagation();
     //turn off existing layers
@@ -127,16 +128,13 @@ document.getElementById('toptracts').onclick = function (e) {
             }
         }
     }
-    //add a source for each region
+    //change filter
     for (r = 0; r < REGIONS.length; r++) {
-        var visibility = map.getLayoutProperty(REGIONS[r] + 'top', 'visibility');
-
-        if (visibility === 'visible') {
-            map.setLayoutProperty(REGIONS[r] + 'top', 'visibility', 'none');
-            this.className = '';
+        var filtertype = map.getFilter(REGIONS[r] + 'top');
+        if (filtertype[2] == 0) {
+            map.setFilter(REGIONS[r] + 'top', ['<', "rank", 50]);
         } else {
-            this.className = 'active';
-            map.setLayoutProperty(REGIONS[r] + 'top', 'visibility', 'visible');
+            map.setFilter(REGIONS[r] + 'top', ['<', "rank", 0]);
         }
     }
 };
