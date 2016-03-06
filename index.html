@@ -8,6 +8,7 @@
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto">
+
     <link href='css/main.css' rel='stylesheet' />
 
 </head>
@@ -42,19 +43,25 @@
             </div>
         </div>
 
-        <nav class="menu" id="layertoggle">
+        <!--nav class="menu" id="layertoggle">
             <a class="active" href="#" id="toggle">Adjust home fire risk layer</a>
-        </nav>
+        </nav-->
 
-        <nav class="menu" id="toptoggle">
+        <div id="toptoggle">
+            <div class="title">Areas per region to view</div>
+            <div id="statbtns"></div>
+        </div>
+
+        <!--nav class="menu" id="toptoggle">
             View top tracts
             <a class="active" href="#" id="top50">50</a>
             <a class="active" href="#" id="top25">25</a>
-        </nav>
+        </nav-->
     </div>
 
-    <script src="js/studiomap.js"></script>
     <script src='lib/d3.v3.min.js'></script>
+    <script src='lib/jquery-2.2.1.min.js'></script>
+    <script src="js/studiomap.js"></script>
 
 </body>
 

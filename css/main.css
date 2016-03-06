@@ -16,7 +16,7 @@ body {
     top: 15px;
     left: 15px;
     bottom: 15px;
-    width: 250px;
+    width: 275px;
     overflow: auto;
     background: rgba(255, 255, 255, 0.8);
     padding-left: 10px;
@@ -28,52 +28,43 @@ h1.sidebar-title {
     font-weight: 100 !important;
 }
 
-.menu {
-    background: #fff;
+#toptoggle {
     position: absolute;
-    z-index: 1;
-    margin-left: 5%;
-    border-radius: 3px;
-    width: 85%;
-    border: 1px solid rgba(0, 0, 0, 0.4);
+    top: 75%;
+    margin-right: 10px;
 }
 
-.menu a {
-    font-size: 13px;
-    color: #404040;
+#statbtns {
     display: block;
-    margin: 0;
-    padding: 0;
-    padding: 10px;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    width: 100%;
+    min-height: 20px;
+}
+
+#statbtns label input {
+    visibility: hidden;
+}
+
+.button {
+    font-size: 14px;
+    padding: 14px 10px 0px 10px;
+    cursor: pointer;
+    border-color: none;
+    color: #666666;
+    opacity: 60%;
+    background-color: #ffffff;
+    display: table-cell;
     text-align: center;
+    margin-right: 0px;
+    white-space: normal !important;
 }
 
-.menu a:last-child {
-    border: none;
-}
-
-.menu a:hover {
-    background-color: #f8f8f8;
-    color: #404040;
-}
-
-.menu a.active {
+.button:hover,
+.button.selected,
+.button.active,
+.button:checked {
     background-color: #742626;
     color: #ffffff;
-}
-
-.menu a.active:hover {
-    background: #804242;
-}
-
-#layertoggle {
-    top: 75%;
-}
-
-#toptoggle {
-    top: 85%
+    text-decoration: none;
 }
 
 #tooltip {
