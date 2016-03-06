@@ -9,8 +9,9 @@ states <- read.csv("data/stateinfo.csv", stringsAsFactors = F)
 # Read risk in directly from model repo (https://github.com/home-fire-risk/smoke_alarm_models) to get latest data
 risk <- read.csv("https://raw.githubusercontent.com/home-fire-risk/smoke_alarm_models/master/aggregate_risk/data/risk_tract.csv", stringsAsFactors = F, colClasses = c("tract_geoid" = "character", "state" = "character","cnty" = "character","tract" = "character"))
 
-# National Census tract shapefile - available at https://drive.google.com/folderview?id=0B9WCc5VMDAquajlzSG5QcW5DcDg&usp=drive_web&tid=0Bxt-Sxy6HRaxZzhyeFRkUVRvckE
-tracts <- readOGR("shapefiles/national","ustracts")
+# National Census tract shapefile - available at https://drive.google.com/drive/folders/0B9WCc5VMDAquajlzSG5QcW5DcDg
+# Clipped to water boundaries in https://github.com/home-fire-risk/smoke_alarm_map/issues/7
+tracts <- readOGR("shapefiles/ustracts_clipped","ustracts_clipped")
 
 # National counties shapefile
 # download.file("http://www2.census.gov/geo/tiger/GENZ2014/shp/cb_2014_us_county_500k.zip", "shapefiles/cb_2014_us_county_500k.zip")
@@ -20,7 +21,7 @@ counties <- readOGR("shapefiles/cb_2014_us_county_500k/","cb_2014_us_county_500k
 # Clean up some mostly-missing tracts (included in one model but no others, other territories)
 risk <- risk %>% filter(!is.na(state))
 
-# Table number of tracts by region
+# Table number of tracts by region for RC request
 tr <- as.data.frame(table(risk$region_name))
 write.csv(tr, "data/tractsbyregion.csv", row.names=F)
 

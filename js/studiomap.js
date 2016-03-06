@@ -82,8 +82,14 @@ var map = new mapboxgl.Map({
 
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.Navigation());
+// Add geocoder
+var geocoder = new mapboxgl.Geocoder({
+    container: 'geocoder-container'
+});
+map.addControl(geocoder);
 
 map.on('style.load', function () {
+
     //add layers for top rank filtering
     for (r = 0; r < REGIONS.length; r++) {
         map.addSource(REGIONS[r] + 'src', {
@@ -107,10 +113,56 @@ map.on('style.load', function () {
             },
             //no tracts should match
             filter: ['<', "rank", 0]
-        });
+        }, 'admin-2-boundaries');
     }
 
     tooltips(['east1', 'east2', 'east3', 'east4', 'east5', 'east6', 'south1', 'south2', 'south3', 'south4', 'south5', 'south6', 'midwest1', 'midwest2', 'midwest3', 'midwest4', 'midwest5', 'midwest6', 'west1', 'west2', 'west3', 'west4', 'west5', 'west6', 'counties1', 'counties2', 'counties3', 'counties4', 'counties5', 'counties6', 'easttop', 'southtop', 'midwesttop', 'westtop']);
+
+    map.addSource('single-point', {
+        "type": "geojson",
+        "data": {
+            "type": "FeatureCollection",
+            "features": []
+        }
+    });
+
+    //need to add a custom marker to style and resize it?
+    /*map.addLayer({
+        "id": "point",
+        "source": "single-point",
+        "type": "symbol",
+        "layout": {
+            "icon-image": "marker-15",
+            "visibility": "visible"
+        },
+        "paint": {
+            "icon-opacity": 1,
+            "icon-color": "#000000"
+        }
+    });*/
+
+    map.addLayer({
+        "id": "point",
+        "source": "single-point",
+        "type": "circle",
+        "paint": {
+            "circle-radius": 15,
+            "circle-color": "#5e2f62"
+        }
+    });
+
+    // Listen for the `geocoder.input` event that is triggered when a user
+    // makes a selection and add a marker that matches the result.
+    geocoder.on('result', function (ev) {
+        console.log(ev.result.geometry);
+        map.getSource('single-point').setData(ev.result.geometry);
+    });
+
+    //remove the marker when the search bar is cleared
+    geocoder.on('clear', function (ev) {
+        console.log('removed')
+        map.getSource('single-point').setData({"coordinates":[null, null], "type": "Point"});
+    });
 
 });
 
@@ -159,7 +211,7 @@ $('#statbtns input:radio').click(function (e) {
             var filtertype = map.getFilter(REGIONS[r] + 'top');
             map.setFilter(REGIONS[r] + 'top', ['<=', "rank", n]);
 
-        }        
+        }
     }
 });
 

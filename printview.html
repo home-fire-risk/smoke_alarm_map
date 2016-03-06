@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v1.0.0/mapbox-gl-geocoder.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v1.0.0/mapbox-gl-geocoder.css' type='text/css' />
+
+    <div id='map'></div>
+
+    <script>
+        var COLORS = ['#fef0d9', '#fdd49e', '#fdbb84', '#fc8d59', '#e34a33', '#b30000'];    //colorbrewer 6 reds
+        var REGIONS = ['east', 'south', 'midwest', 'west']; //regions to add - saved in separate mapbox files due to upload limit
+        //URLS of regional datasets
+        var URLS = ['datakinddc.04hkadfo', 'datakinddc.2b90vyhy', 'datakinddc.b0ujw98l', 'datakinddc.cao4jei0'];
+
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZGF0YWtpbmRkYyIsImEiOiJjaWppcmZtMHcwMnZ2dHlsdDlzenN0MnRqIn0.FsB8WZ_HKhb3mPa1MPXxdw';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v8',
+            zoom: 9,
+            center: [-77.014576, 38.899396],
+            minZoom: 3
+        });
+
+        map.on('style.load', function () {
+            //RC region boundaries
+            map.addSource('rcregions', {
+                type: 'vector',
+                url: 'mapbox://datakinddc.3m388gqo'
+            });
+
+            map.addLayer({
+                id: 'rcregions',
+                type: "line",
+                source: 'rcregions',
+                'source-layer': 'rc_all_reg',
+                "layout": {
+                    "line-join": "round",
+                    "line-cap": "round"
+                },
+                "paint": {
+                    "line-color": "rgba(84,12,12,1)",
+                    "line-width": 1
+                }
+            }, 'admin-2-boundaries');
+
+            //regional tract level datasets
+            for (r = 0; r < REGIONS.length; r++) {
+                map.addSource(REGIONS[r] + 'src', {
+                    type: 'vector',
+                    url: 'mapbox://' + URLS[r]
+                });
+
+                //draw boundaries for top 100 tracts in each region
+                map.addLayer({
+                    id: REGIONS[r] + 'top',
+                    type: "line",
+                    source: REGIONS[r] + 'src',
+                    'source-layer': REGIONS[r],
+                    "layout": {
+                        "line-join": "round",
+                        "line-cap": "round"
+                    },
+                    "paint": {
+                        "line-color": "#080004",
+                        "line-width": 2
+                    },
+                    filter: ['<', "rank", 100]
+                }, 'admin-2-boundaries');
+
+                //this is the same as the studio-built choropleth map layers
+                /*for (i = 1; i < 7; i++) {
+                    map.addLayer({
+                        id: REGIONS[r] + i,
+                        type: 'fill',
+                        source: REGIONS[r] + 'src',
+                        'source-layer': REGIONS[r],
+                        interactive: true,
+                        filter: ["all", ["in", "$type", "Polygon", "LineString"], ["all", ["==", "riskgrp", i], ["==", "lowpop", 0]]],
+                        paint: {
+                            "fill-outline-color": {
+                                base: 0.1,
+                                stops: [
+                        [12, "hsla(0, 0%, 100%, 0)"],
+                        [13, "hsl(0, 0%, 100%)"]]
+                            },
+                            "fill-color": COLORS[i - 1],
+                            "fill-opacity": 0.5
+                        },
+                    }, 'admin-2-boundaries');
+                }*/
+            }
+        });
+    </script>
+
+</body>
+
+</html>
