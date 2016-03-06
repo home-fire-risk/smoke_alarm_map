@@ -96,6 +96,7 @@ map.on('style.load', function () {
             type: 'fill',
             source: REGIONS[r] + 'src',
             'source-layer': REGIONS[r],
+            interactive: true,
             layout: {
                 visibility: 'visible'
             },
