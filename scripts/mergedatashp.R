@@ -91,12 +91,18 @@ states$statefip <- sprintf("%02s", states$statefip)
 states$division[states$statefip==72] <- 6
 states$region[states$statefip==72] <- 2
 
-riskt <- left_join(riskt, states, by=c("state"="statefip"))
-
-# Select variables needed for shapefile, merge, rename for .shp colname limit
-riskt <- riskt %>% select(tract_geoid, risk, riskgroup, division, chapter_name, region_name, county_name_long, rank, rankn, population, households, lowpop, medianinc_hh, medianage) %>%
-	rename(chapter = chapter_name, region = region_name, county = county_name_long)
+# Rename RC names
+riskt <- riskt %>% rename(chapter = chapter_name, region = region_name, county = county_name_long)
 riskt <- data.frame(riskt)
+
+# Export CSV for table view
+tablet <- riskt %>% filter(lowpop==0) %>% select(-risk_1a, -risk_1b, -risk_1c, -risk_2a, -risk_2c, -risk_3a, -NAME)
+write.csv(tablet, "data/tabletracts.csv", row.names = F, na="")
+
+states <- states %>% select(-region)
+riskt <- left_join(riskt, states, by=c("state"="statefip"))
+# Select variables needed for shapefile, merge, rename for .shp colname limit
+riskt <- riskt %>% select(tract_geoid, risk, riskgroup, division, chapter, region, county, rank, rankn, population, households, lowpop, medianinc_hh, medianage)
 
 risktracts <- merge(tracts, riskt, by.x="GEOID", by.y="tract_geoid")
 
