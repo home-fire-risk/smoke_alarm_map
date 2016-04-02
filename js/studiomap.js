@@ -77,7 +77,8 @@ var map = new mapboxgl.Map({
     style: 'mapbox://styles/datakinddc/cijisuzms004z8wlxb9m6zh0y',
     zoom: 9,
     center: [-77.014576, 38.899396],
-    minZoom: 3
+    minZoom: 3,
+    preserveDrawingBuffer: true
 });
 
 // Add zoom and rotation controls to the map.
@@ -242,3 +243,10 @@ $('#statbtns input:radio').click(function (e) {
         }
     }
 };*/
+
+$('#print').click(function () {
+    var printWindow = window.open();
+    var canvas = map.getCanvas();
+    printWindow.document.write('<img src="' + canvas.toDataURL() + '" style="width: 100%;">');
+    printWindow.print();
+});
