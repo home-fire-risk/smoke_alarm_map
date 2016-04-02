@@ -59,20 +59,41 @@ footer {
     width: 100%;
     left: 0;
     right: 0;
-    height: 120px;
     background-color: #ccc;
     bottom: 0px;
+    height: 200px;
 }
 
 #credits {
     padding-top: 5px;
 }
 
-select {
+.styled-select {
     height: 40px;
+    border: none;
+    width: 300px;
+    border-radius: 0px;
+    margin-bottom: 5px;
     font-size: 14px;
+    background: url(../img/arrowdown.png) no-repeat right #eaeaea;
+    background-size: 40px 40px;
 }
+
+.styled-select select {
+    height: 40px;
+    border: none;
+    border-radius: 0;
+    font-size: 14px;
+    width: 300px;
+    margin-left: 6px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+}
+
+
 /*map*/
+
 #map-holder {
     width: 97%;
     height: 100%;
@@ -99,6 +120,7 @@ select {
     float: right;
     margin-right: 55px;
 }
+
 
 /*sidebar*/
 
