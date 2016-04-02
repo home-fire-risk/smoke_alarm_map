@@ -1,13 +1,80 @@
-html { height: 100%; }
-body {
-    margin: 0;
-    padding: 0;
-    font-family: "Roboto", Arial, serif;
+html {
     height: 100%;
 }
 
-#map-holder {
+body {
+    font-family: "Roboto", Arial, serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    margin: 25px 25px 25px 25px;
+}
+
+header {
+    top: 0;
+    position: fixed;
+    background-color: #742626;
+    min-height: 60px;
+    color: #ffffff;
     width: 100%;
+    z-index: 5;
+}
+
+#nav-content {
+    margin-top: 15px;
+    width: 100%;
+    position: absolute;
+}
+
+#page-title {
+    display: inline-block;
+    font-size: 18px;
+    margin-left: 25px;
+    float: left;
+}
+
+nav {
+    display: block;
+    margin-right: 45px;
+    float: right;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-left: 20px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+#intro {
+    margin-top: 70px;
+}
+
+footer {
+    width: 100%;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background-color: #ccc;
+    bottom: 0px;
+}
+
+#credits {
+    padding-top: 5px;
+}
+
+select {
+    height: 40px;
+    font-size: 14px;
+}
+/*map*/
+#map-holder {
+    width: 97%;
     height: 100%;
     position: relative;
 }
@@ -32,6 +99,8 @@ body {
     float: right;
     margin-right: 55px;
 }
+
+/*sidebar*/
 
 #sidebar {
     position: absolute;

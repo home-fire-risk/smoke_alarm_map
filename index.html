@@ -12,15 +12,26 @@
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto">
     <script src="lib/colorbrewer.js" charset="utf-8"></script>
     <link href='css/main.css' rel='stylesheet' />
-        <link href='css/table.css' rel='stylesheet' />
+    <link href='css/table.css' rel='stylesheet' />
 
 </head>
 
 <body>
-    
-    <div id='intro'>
-        <h1>This is a title</h1>
-        <p>This is a summary</p>
+
+    <header>
+        <div id="nav-content">
+            <div id="page-title">Red Cross Home Fire Preparedness Campaign Map</div>
+            <nav>
+                <a href="#map-holder">Map</a>
+                <a href="#table-holder">Table</a>
+                <a href="#credits">Credits</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id='intro' class='content'>
+        <p>This is a summary. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </div>
 
     <div id='map-holder'>
@@ -66,10 +77,19 @@
 
         </div>
     </div>
-    
-    <h2>Table view</h2>
-    <select id='regionselect'></select>
-    <div id='table'></div>
+
+    <div id="table-holder">
+        <h2>Table view</h2>
+        <select id='regionselect'></select>
+        <div id='table'></div>
+    </div>
+
+    <footer>
+        <div id="credits" class='content'>
+            <h2>About</h2>
+            <p>View source on Github, copyright 2016, American Red Cross, DataKind DC</p>
+        </div>
+    </footer>
 
     <script src='lib/d3.v3.min.js'></script>
     <script src='lib/jquery-2.2.1.min.js'></script>
