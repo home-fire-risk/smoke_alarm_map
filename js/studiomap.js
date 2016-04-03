@@ -45,6 +45,7 @@ function tooltips(layers) {
         });
 
         if (features.length) {
+            console.log(features[0]);
             //show name and value in sidebar
             document.getElementById('tooltip-risk').innerHTML = Math.round(features[0].properties.risk);
             document.getElementById('tooltip-rank').innerHTML = features[0].properties.rank + "/" + features[0].properties.rankn;
@@ -250,3 +251,33 @@ $('#print').click(function () {
     printWindow.document.write('<img src="' + canvas.toDataURL() + '" style="width: 100%;">');
     printWindow.print();
 });
+
+function flyToTract(geoid) {
+    var tiles = [];
+
+    for (var r = 0; r < REGIONS.length; r++) {
+        var results = map.querySourceFeatures(REGIONS[r] + 'src', { sourceLayer: [REGIONS[r]], filter: ['==', 'GEOID', geoid] });
+
+        if (results.length) {
+            tiles = tiles.concat(results);
+            break;
+        }
+    }
+
+    var coords = [];
+
+    for (var t = 0; t < tiles.length; t++) {
+        coords = coords.concat(tiles[t].geometry.coordinates[0]);
+    }
+
+    var bounds = coords.reduce(function (bounds, coordinate) {
+        return {
+            sw: [Math.min(bounds.sw[0], coordinate[0]), Math.max(bounds.sw[1], coordinate[1])],
+            ne: [Math.max(bounds.ne[0], coordinate[0]), Math.min(bounds.ne[1], coordinate[1])]
+        };
+    }, { sw: [coords[0][0], coords[0][1]], ne: [coords[0][0], coords[0][1]] });
+
+    var latLngBounds = new mapboxgl.LngLatBounds(new mapboxgl.LngLat(bounds.sw[0], bounds.sw[1]), new mapboxgl.LngLat(bounds.ne[0], bounds.ne[1]));
+
+    map.fitBounds(latLngBounds);
+}
