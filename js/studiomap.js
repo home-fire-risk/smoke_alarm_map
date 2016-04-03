@@ -217,34 +217,6 @@ $('#statbtns input:radio').click(function (e) {
     }
 });
 
-// Hide areas in groups 1-5 (low risk)
-/*document.getElementById('toggle').onclick = function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    //loop over risk groups 1-5
-    for (i = 1; i < 6; i++) {
-        var visibility = map.getLayoutProperty('counties' + i, 'visibility');
-        if (visibility === 'visible') {
-            map.setLayoutProperty('counties' + i, 'visibility', 'none');
-            this.className = '';
-        } else {
-            this.className = 'active';
-            map.setLayoutProperty('counties' + i, 'visibility', 'visible');
-        }
-        //loop over all regions (tract level)
-        for (r = 0; r < REGIONS.length; r++) {
-            var visibility = map.getLayoutProperty(REGIONS[r] + i, 'visibility');
-            if (visibility === 'visible') {
-                map.setLayoutProperty(REGIONS[r] + i, 'visibility', 'none');
-                this.className = '';
-            } else {
-                this.className = 'active';
-                map.setLayoutProperty(REGIONS[r] + i, 'visibility', 'visible');
-            }
-        }
-    }
-};*/
-
 $('#print').click(function () {
     var printWindow = window.open();
     var canvas = map.getCanvas();

@@ -156,6 +156,9 @@ function rows() {
         .selectAll('tr')
         .data(data).enter()
         .append('tr')
+        .attr("id", function (d) {
+            return d.tract_geoid;
+        })
         .selectAll('td')
         .data(function (row, i) {
             return columns.map(function (c) {
