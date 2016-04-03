@@ -1,5 +1,5 @@
 var colors = d3.scale.quantize()
-    .range(colorbrewer.OrRd[6]);
+    .range(["#fef0d9","#fdd49e","#fdbb84","#fc8d59","#e34a33","#b30000"]);
 
 var legend = d3.select('#legend')
     .append('ul')
