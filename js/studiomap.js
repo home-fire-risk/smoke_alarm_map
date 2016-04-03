@@ -230,7 +230,7 @@ function flyToTract(geoid) {
     for (var r = 0; r < REGIONS.length; r++) {
         var results = map.querySourceFeatures(REGIONS[r] + 'src', { sourceLayer: [REGIONS[r]], filter: ['==', 'GEOID', geoid] });
 
-        if (results.length) {
+        if (results.length > 0) {
             tiles = tiles.concat(results);
             break;
         }

@@ -8,7 +8,7 @@ var formatPct = d3.format('%')
 
 // column definitions
 var columns = [
-        {
+    {
         head: 'Rank',
         cl: 'num',
         html: function (d) {
@@ -26,7 +26,7 @@ var columns = [
         head: 'Tract',
         cl: 'left',
         html: function (d) {
-            var name =  d.name_tract;
+            var name = d.name_tract;
             return name.substr(13)
         }
         },
@@ -179,7 +179,11 @@ function rows() {
         })
         .attr("id", function (d) {
             return d.head;
-        });
+        })
+        .on("click", function (d) {
+            console.log(this.parentNode.id);
+            flyToTract(this.parentNode.id);
+        })
 }
 
 function tableInit() {
