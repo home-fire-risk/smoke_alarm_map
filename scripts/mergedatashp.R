@@ -1,5 +1,4 @@
-# Merge risk scores on to national census tract shapefile, split into 4 regional shapefiles for Mapbox upload
-# Hannah Recht, 01-09-16
+# Merge risk scores on to national census tract shapefile, split into 4 regional shapefiles & county file for Mapbox upload
 
 library(rgdal)
 library(dplyr)

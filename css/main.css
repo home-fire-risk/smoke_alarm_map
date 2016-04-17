@@ -1,71 +1,77 @@
+body,
 html {
+    width: 100%;
     height: 100%;
 }
 
 body {
     font-family: "Roboto", Arial, serif;
-    height: 100%;
     margin: 0;
     padding: 0;
 }
 
-.content {
-    margin: 25px 25px 25px 25px;
-}
-
-header {
-    top: 0;
-    position: fixed;
-    background-color: #742626;
-    min-height: 60px;
-    color: #ffffff;
-    width: 100%;
-    z-index: 5;
-}
-
-#nav-content {
-    margin-top: 15px;
-    width: 100%;
-    position: absolute;
-}
-
-#page-title {
-    display: inline-block;
-    font-size: 18px;
-    margin-left: 25px;
-    float: left;
-}
-
-nav {
-    display: block;
-    margin-right: 45px;
-    float: right;
-}
-
-nav a {
-    color: #ffffff;
-    text-decoration: none;
-    text-transform: uppercase;
-    margin-left: 20px;
-    font-weight: 700;
-    font-size: 14px;
-}
-
 #intro {
-    margin-top: 70px;
+    padding-top: 65px;
+}
+
+p {
+    margin: 12 0 12px;
+    padding-bottom: 6px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.about {
+    font-size: 0.9em;
+}
+
+p.copyright {
+    margin: 15px 0 0;
+}
+
+.navbar {
+    background-color: #742626;
+    border-bottom: 1px solid #4a1818;
+    height: 50px;
+    margin-bottom: 0px;
+}
+
+.navbar-default,
+.navbar-brand {
+    color: #fff !important;
+    font-weight: 100;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: #dda89c;
+}
+
+#about {
+    padding-top: 5px;
 }
 
 footer {
-    width: 100%;
-    left: 0;
-    right: 0;
-    background-color: #ccc;
-    bottom: 0px;
-    height: 200px;
+    border-top: 1px solid #c3c3c3;
+    overflow-y: hidden;
+    margin-top: 50px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background-color: #ebebeb;
+    bottom: 0;
 }
 
-#credits {
-    padding-top: 5px;
+footer h3 {
+    font-weight: 100;
+}
+
+img.logo {
+    max-height: 1em;
+    display: inline-block;
+    width: auto;
 }
 
 .styled-select {
@@ -95,8 +101,11 @@ footer {
 /*map*/
 
 #map-holder {
-    width: 97%;
-    height: 100%;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    height: 95%;
     position: relative;
 }
 
@@ -137,21 +146,36 @@ footer {
     padding-right: 10px;
 }
 
-h1.sidebar-title {
+.sidebar-title {
     text-transform: uppercase;
-    font-weight: 100 !important;
+    font-weight: 300 !important;
+    font-size: 20px;
 }
 
-#legend {
+#print {
+    background: rgba(255, 255, 255, 1);
+    border-radius: 0px;
+    border: 1px solid #cccccc;
+}
+
+#legend-holder {
+    padding-right: 20px;
+    width: 100%;
+    text-align: center;
     position: absolute;
     z-index: 1;
     top: 80%;
-    margin-left: 5%;
-    border-radius: 3px;
-    width: 85%;
 }
 
-li.key {
+#legend {
+    display: block;
+    width: 152px;
+    margin: 0 auto;
+    font-size: 12px;
+    /*background: rgba(255, 255, 255, 1);*/
+}
+
+/*li.key {
     border-left-width: 15px;
     border-left-style: solid;
     opacity: 0.5;
@@ -159,7 +183,7 @@ li.key {
     width: 10%;
     padding-left: 0;
     padding-right: 0;
-}
+}*/
 
 #toptoggle {
     position: absolute;
@@ -171,6 +195,10 @@ li.key {
     display: block;
     width: 100%;
     min-height: 20px;
+}
+
+label {
+    font-weight: 400 !important;
 }
 
 #statbtns label input {
@@ -215,7 +243,7 @@ li.key {
 .risk {
     font-size: 16px;
     font-weight: 400;
-    height: 90px;
+    height: 100px;
     border-bottom: thin solid #7e7e7e;
     margin-bottom: 6px;
 }
@@ -230,6 +258,10 @@ li.key {
 #tooltip-risk {
     font-size: 24px;
     margin-bottom: 6px;
+}
+
+#tooltip-rank {
+    margin-bottom: 4px;
 }
 
 #tooltip-name,

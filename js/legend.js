@@ -1,22 +1,43 @@
-var colors = d3.scale.quantize()
-    .range(["#fef0d9","#fdd49e","#fdbb84","#fc8d59","#e34a33","#b30000"]);
+var COLORS = ["#fef0d9", "#fdd49e", "#fdbb84", "#fc8d59", "#e34a33", "#b30000"];
 
-var legend = d3.select('#legend')
-    .append('ul')
-    .attr('class', 'list-inline')
-    .attr('style', 'list-style-type:none');
+function legend() {
+    var lw = 25;
+    
+    var svg = d3.select("#legend").append("svg")
+        .attr("width", lw * COLORS.length + 2)
+        .attr("height", 60)
+        .append("g");
 
-var keys = legend.selectAll('li.key')
-    .data(colors.range());
+    var legend = svg.selectAll("g.legend")
+        .data(COLORS)
+        .enter()
+        .append("g")
+        .attr("class", "legenditem");
 
-keys.enter().append('li')
-    .attr('class', 'key')
-    .style('border-left-color', String)
-    .text(function (d) {
-        var r = colors.invertExtent(d);
-        //return formats.percent(r[0]);
-    });
+    legend.append("rect")
+        .attr("opacity", 0.5)
+        .attr("fill", function (d, i) {
+            return COLORS[i];
+        })
+        .attr("x", function (d, i) {
+            return i * lw;
+        })
+        .attr("y", 15)
+        .attr("width", lw)
+        .attr("height", lw);
 
-legend.selectAll('li.key').html('&nbsp;');
-legend.select('li.key').html('&nbsp;&nbsp;&nbsp;&nbsp;Least&nbsp;Risk');
-legend.select('li.key:last-of-type').html('&nbsp;&nbsp;&nbsp;&nbsp;Most&nbsp;Risk');
+    svg.append("text")
+        .attr("x", 0)
+        .attr("y", 10)
+        .attr("text-anchor", "start")
+        .attr("class", "legend")
+        .text("Least risk");
+
+    svg.append("text")
+        .attr("x", COLORS.length * lw)
+        .attr("y", 10)
+        .attr("text-anchor", "end")
+        .attr("class", "legend")
+        .text("Most risk")
+}
+legend();

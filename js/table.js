@@ -10,14 +10,14 @@ var formatPct = d3.format('%')
 var columns = [
     {
         head: 'Rank',
-        cl: 'num',
+        cl: 'center',
         html: function (d) {
             return formatInt(d.rank);
         }
         },
     {
         head: 'Risk',
-        cl: 'num',
+        cl: 'center',
         html: function (d) {
             return formatInt(d.risk);
         }
@@ -52,27 +52,6 @@ var columns = [
         }
         },
     {
-        head: 'Hispanic',
-        cl: 'num',
-        html: function (d) {
-            return formatPct(d.hispanic);
-        }
-        },
-    {
-        head: 'White, non-Hispanic',
-        cl: 'num',
-        html: function (d) {
-            return formatPct(d.white);
-        }
-        },
-    {
-        head: 'Black, non-Hispanic',
-        cl: 'num',
-        html: function (d) {
-            return formatPct(d.black);
-        }
-        },
-    {
         head: 'Median household income',
         cl: 'num',
         html: function (d) {
@@ -80,12 +59,33 @@ var columns = [
         }
     },
     {
+        head: 'Hispanic',
+        cl: 'num',
+        html: function (d) {
+            return formatPct(d.hispanic);
+        }
+        },
+    {
+        head: 'White',
+        cl: 'num',
+        html: function (d) {
+            return formatPct(d.white);
+        }
+        },
+    {
+        head: 'Black',
+        cl: 'num',
+        html: function (d) {
+            return formatPct(d.black);
+        }
+        },
+    /*{
         head: 'Median age',
         cl: 'num',
         html: function (d) {
             return formatInt(d.medianage);
         }
-        },
+        },*/
     {
         head: 'Risk - smoke alarm',
         cl: 'num',
@@ -110,8 +110,8 @@ var columns = [
     ];
 
 // create table
-var table = d3.select("#table");
-table.append('table');
+var tablediv = d3.select("#table");
+var table = tablediv.append('table');
 
 
 function changedata() {
@@ -198,6 +198,9 @@ function tableInit() {
         .append('th')
         .attr('class', function (d) {
             return d.cl;
+        })
+        .attr("id", function (d) {
+            return d.head;
         })
         .text(function (d) {
             return d.head;

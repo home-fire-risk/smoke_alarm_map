@@ -1,4 +1,3 @@
-# Hannah Recht, 01-09-16
 # Compile a national census tract shapefile
 # First, download zipped state-level files from ftp://ftp2.census.gov/geo/tiger/TIGER2013/TRACT/ - states 1-56 and 72 (Puerto Rico)
 # (On Mac, fastest to cmd-K and enter the ftp address, then drag the files to your machine)

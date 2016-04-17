@@ -3,13 +3,16 @@
 
 <head>
     <meta charset='utf-8' />
-    <title>Home fire risk map</title>
+    <title>Red Cross Home Fire Preparedness Campaign Map</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.16.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.16.0/mapbox-gl.css' rel='stylesheet' />
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v1.0.0/mapbox-gl-geocoder.css' type='text/css' />
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v1.0.0/mapbox-gl-geocoder.js'></script>
+
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto">
+    <link href='lib/bootstrap.min.css' rel='stylesheet' />
     <link href='css/main.css' rel='stylesheet' />
     <link href='css/table.css' rel='stylesheet' />
 
@@ -17,7 +20,7 @@
 
 <body>
 
-    <header>
+    <!--header>
         <div id="nav-content">
             <div id="page-title">Red Cross Home Fire Preparedness Campaign Map</div>
             <nav>
@@ -26,11 +29,47 @@
                 <a href="#credits">Credits</a>
             </nav>
         </div>
-    </header>
+    </header-->
 
-    <div id='intro' class='content'>
-        <p>This is a summary. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">Red Cross Home Fire Preparedness Campaign Map</div>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#map-holder">Map</a>
+                    </li>
+                    <li>
+                        <a href="#table-section">Table</a>
+                    </li>
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12" id='intro'>
+                <p>This is a summary of what the project is and how to use it. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+        </div>
     </div>
 
     <div id='map-holder'>
@@ -38,28 +77,28 @@
         <div id='geocoder-container'></div>
 
         <div id='sidebar'>
-            <h1 class="sidebar-title">Home fire risk</h1>
+            <h2 class="sidebar-title">Home fire risk</h2>
 
-            <button id="print">Print Current View</button>
+            <button id="print" class="btn">Print Current View</button>
 
             <div id='tooltip'>
-                <div class="tooltip risk">
+                <div class="tt risk">
                     <div class="title">Risk score</div>
                     <div id='tooltip-risk'></div>
                     <div id="tooltip-rank"></div>
                 </div>
 
-                <div class="tooltip households">
+                <div class="tt households">
                     <div class="title">Households</div>
                     <div id='tooltip-households'></div>
                 </div>
 
-                <div class="tooltip income">
+                <div class="tt income">
                     <div class="title">Median household income</div>
                     <div id='tooltip-income'></div>
                 </div>
 
-                <div class="tooltip name">
+                <div class="tt name">
                     <div class="title">Area</div>
                     <div id='tooltip-tract'></div>
                     <div id='tooltip-name'></div>
@@ -72,31 +111,46 @@
                 <div id="statbtns"></div>
             </div>
 
-            <div id="legend"></div>
+            <div id="legend-holder">
+                <div id="legend"></div>
+            </div>
 
         </div>
     </div>
 
-    <div id="table-holder" class="content">
-        <h2>Table view</h2>
-        <div class='styled-select'>
-            <select id='regionselect'></select>
+    <div id="table-section" class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>View data</h2>
+                <div class='styled-select'>
+                    <select id='regionselect'></select>
+                </div>
+            </div>
         </div>
+    </div>
+    <div id="table-holder">
         <div id='table'></div>
     </div>
 
     <footer>
-        <div id="credits" class='content'>
-            <h2>About</h2>
-            <a href="data/tabletracts.csv"><button class="btn">Download data</button></a>
-            <p>ARC language. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <p>Built by DataKind DC (logo)</p>
-            <p>View source on <a href="https://github.com/home-fire-risk" target="_blank">Github</a>, copyright 2016</p>
+        <div id="about" class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="footer">About</h3>
+                    <p><a href="data/tabletracts.csv">Download data</a></p>
+                    <p>ARC language. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    <p>Built by DataKind DC.</p>
+                    <p>&copy; 2016. View source on <a href="https://github.com/home-fire-risk" target="_blank">Github</a></p>
+                    <img class="logo" src="img/DataKindDC_bw.png" alt="DataKind DC logo">
+                    <p>RC logo?</p>
+                </div>
+            </div>
         </div>
     </footer>
 
     <script src='lib/d3.v3.min.js'></script>
     <script src='lib/jquery-2.2.1.min.js'></script>
+    <script src='lib/bootstrap.min.js'></script>
     <script src="js/studiomap.js"></script>
     <script src="js/legend.js"></script>
     <script src="js/table.js"></script>

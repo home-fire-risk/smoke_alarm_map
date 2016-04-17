@@ -1,4 +1,3 @@
-# Hannah Recht, 02-21-16
 # Retrieve 2010-2014 ACS data for map tool
 # Note: to run, you'll need a Census API key - http://api.census.gov/data/key_signup.html
 
