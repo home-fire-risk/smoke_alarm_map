@@ -44,8 +44,7 @@ function tooltips(layers) {
             layers: layers
         });
 
-        if (features.length) {
-            console.log(features[0]);
+        if (features.length > 0 ) {
             //show name and value in sidebar
             document.getElementById('tooltip-risk').innerHTML = Math.round(features[0].properties.risk);
             document.getElementById('tooltip-rank').innerHTML = features[0].properties.rank + "/" + features[0].properties.rankn;
@@ -104,7 +103,6 @@ map.on('style.load', function () {
             type: 'fill',
             source: REGIONS[r] + 'src',
             'source-layer': REGIONS[r],
-            interactive: true,
             layout: {
                 visibility: 'visible'
             },

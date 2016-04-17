@@ -16,13 +16,21 @@ Join the [DataKind DC meetup group](http://www.meetup.com/DataKind-DC/) to find 
 
 ### Tasks
 See [issues](https://github.com/home-fire-risk/smoke_alarm_map/issues) to view tasks that need help. Please feel free to comment with any questions.
-### Mapbox contributions
-We're building the map itself in Mapbox Studio and hosting the map data in our Mapbox account. If you have data to add to the map, save shapefiles as a .zip in Google Drive and [Hannah](https://github.com/hrecht) will upload them. If you're interested in designing the map's appearance and have experience with Studio contact us to talk further.
  
 ### Create and edit shapefiles
 To build a national shapefile of census tracts, download the [state-level files](ftp://ftp2.census.gov/geo/tiger/TIGER2013/TRACT/) and then run [buildnationalshp.sh](scripts/buildnationalshp.sh). Note: This requires [gdal](http://www.gdal.org/index.html) installation and assumes you're in a *nix system. The shapefile .zip is saved on [Google Drive](https://drive.google.com/folderview?id=0B9WCc5VMDAquajlzSG5QcW5DcDg&usp=drive_web&tid=0Bxt-Sxy6HRaxZzhyeFRkUVRvckE). The [model results](https://github.com/home-fire-risk/smoke_alarm_models/blob/master/aggregate_risk/data/risk_tract.csv) are merged to the resulting shapefile and split into regional files with [mergedatashp.R](scripts/mergedatashp.R)
 * Red Cross shapefiles and boundary definitions [source](http://maps.redcross.org/website/Services/ARC_Services.html)
  * [Chapter boundaries shapefile .zip](http://maps.redcross.org/website/Services/Data/RC_All.zip)
  * [Region boundaries shapefile .zip](http://maps.redcross.org/website/Services/Data/RC_All_REG.zip)
+
+### Getting and updating data
+* ACS data is obtained from the Census API in [scripts/retrieveCensus.R](scripts/retrieveCensus.R)
+* Run [scripts/mergedatashp.R](scripts/mergedatashp.R) to read latest risk scores directly from [the modeling repo](https://raw.githubusercontent.com/home-fire-risk/smoke_alarm_models/master/aggregate_risk/data/risk_tract.csv), format, join to ACS data and shapefiles, and export new shapefiles & .zips
+* Replace files in Mapbox using the Mapbox [upload Node library](https://github.com/mapbox/mapbox-upload) CLI - this requires you to have a secret auth token with upload access
+```bash
+$ bash scripts/updateMapbox.sh
+```
+* Alternatively, you can update the files from the Mapbox website by manually replacing them
+
 
 For conversations/questions that are awkward to carry out using GitHub issues, send an email to DataKind Red Cross core volunteers Hannah Recht (hrecht2@gmail.com) and Andrew Brooks (andrewbrooksct@gmail.com) and one of us will follow up with you.
