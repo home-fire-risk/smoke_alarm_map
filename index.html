@@ -47,13 +47,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#map-holder">Map</a>
+                        <a href="#about" id="aboutlink">About</a>
                     </li>
                     <li>
-                        <a href="#table-section">Table</a>
-                    </li>
-                    <li>
-                        <a href="#about">About</a>
+                        <a href="#table-section" id="tablelink">View data</a>
                     </li>
                 </ul>
             </div>
@@ -63,13 +60,45 @@
     </nav>
 
 
-    <div class="container">
+    <div id="about" div class="popup">
+        <div class="text">
+            <p>This visualization supports the Home Fire Campaign in an effort to reduce the number of deaths and injuries caused by home fires. Specifically, this DataKind project aims to identify and highlight, “high-risk” neighborhoods to target for in-home fire safety education and the installation of free smoke alarms by the American Red Cross and its partners.</p>
+            <p><a href="data/tabletracts.csv">Download data</a></p>
+            <p>This project uses machine learning techniques that leverage data from the U.S. Census, the American Red Cross and the National Fire Incident Reporting System to predict aggregate neighborhood home fire risk based on the following criteria:
+                <ul>
+                    <li>Risk - No Smoke Alarm: The increased likelihood that homes within a census tract lack functioning smoke alarms.</li>
+                    <li>Risk - Home Fire: The prevalence of home fires in a census tract over a 5-year period.</li>
+                    <li>Risk - Fire-Related Injury: The increased likelihood that a home fire could result in an injury or death.</li>
+                </ul>
+            </p>
+            <p>Built by DataKind DC.</p>
+            <p>&copy; 2016. View source on <a href="https://github.com/home-fire-risk" target="_blank">Github</a></p>
+            <img class="logo" src="img/DataKindDC_bw.png" alt="DataKind DC logo">
+            <p>RC logo?</p>
+        </div>
+        <div class="divclose">Close X</div>
+    </div>
+
+    <div id="table-section" class="popup">
+        <div class="text">
+            <h2 class="center">View data by Red Cross Region</h2>
+            <div class='styled-select'>
+                <select id='regionselect'></select>
+            </div>
+        </div>
+        <div id="table-holder">
+            <div id='table'></div>
+        </div>
+        <div class="divclose">Close X</div>
+    </div>
+
+    <!--div class="container">
         <div class="row">
-            <div class="col-lg-10 col-lg-offset-1" id='intro'>
+            <div class="col-lg-10 col-lg-offset-1 intro">
                 <p>This visualization supports the Home Fire Campaign in an effort to reduce the number of deaths and injuries caused by home fires. Specifically, this DataKind project aims to identify and highlight, “high-risk” neighborhoods to target for in-home fire safety education and the installation of free smoke alarms by the American Red Cross and its partners.</p>
             </div>
         </div>
-    </div>
+    </div-->
 
     <div id='map-holder'>
         <div id='map'></div>
@@ -116,8 +145,7 @@
 
         </div>
     </div>
-
-    <div id="table-section" class="container">
+    <!--div id="table-section" class="container">
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1">
                 <h2>View data by Red Cross Region</h2>
@@ -151,11 +179,12 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer-->
 
     <script src='lib/d3.v3.min.js'></script>
     <script src='lib/jquery-2.2.1.min.js'></script>
     <script src='lib/bootstrap.min.js'></script>
+    <script src="js/divnav.js"></script>
     <script src="js/studiomap.js"></script>
     <script src="js/legend.js"></script>
     <script src="js/table.js"></script>

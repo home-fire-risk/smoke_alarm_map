@@ -10,7 +10,7 @@ body {
     padding: 0;
 }
 
-#intro {
+.intro {
     padding-top: 65px;
 }
 
@@ -98,30 +98,70 @@ img.logo {
 }
 
 
+/*popup divs - about and table*/
+
+.popup {
+    position: absolute;
+    border: 1px solid #ccc;
+    z-index: 100;
+    background: #ffffff;
+}
+
+#about {
+    margin-top: 120px;
+    width: 60%;
+    left: 20%;
+}
+
+.text {
+    padding: 25px;
+}
+
+.center {
+    text-align: center;
+}
+
+#table-section {
+    margin-top: 50px;
+    width: 94%;
+    margin-left: 3%;
+    height: 90%;
+}
+
+.divclose {
+    float: right;
+    font-size: 18px;
+    color: #742626;
+    font-weight: 700;
+    margin: 25px;
+}
+
+
 /*map*/
 
 #map-holder {
+    top: 0;
     /*margin-left: 25px;
     margin-right: 25px;*/
-    margin-top: 25px;
-    margin-bottom: 25px;
-    height: 95%;
+    /*margin-top: 25px;
+    margin-bottom: 25px;*/
+    height: 100%;
+    bottom: 0;
     position: relative;
 }
 
 #map {
     position: absolute;
-    top: 0;
+    top: 0px;
     bottom: 0;
     width: 100%;
 }
 
 #geocoder-container {
     position: absolute;
-    top: 0;
     right: 60px;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 65px;
 }
 
 #geocoder-container > div {
@@ -130,13 +170,17 @@ img.logo {
     margin-right: 55px;
 }
 
+.mapboxgl-ctrl-group.mapboxgl-ctrl {
+    margin-top: 65px;
+}
+
 
 /*sidebar*/
 
 #sidebar {
-    position: absolute;
-    height: 100%;
-    top: 15px;
+    position: relative;
+    height: 90%;
+    top: 65px;
     left: 15px;
     bottom: 15px;
     width: 275px;
@@ -174,6 +218,7 @@ img.logo {
     font-size: 12px;
     /*background: rgba(255, 255, 255, 1);*/
 }
+
 
 /*li.key {
     border-left-width: 15px;
