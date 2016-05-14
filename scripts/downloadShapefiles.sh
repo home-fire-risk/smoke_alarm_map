@@ -11,6 +11,7 @@ fi
 
 # Red Cross region boundaries
 # This doesn't get altered, no need to unzip, uploaded to Mapbox as is
+echo downloading Red Cross regions
 curl -o shapefiles/RC_Regions.zip http://maps.redcross.org/website/Services/Data/RC_All_REG.zip
 
 # Census county cartographic boundary shapefile
@@ -19,6 +20,7 @@ curl -o shapefiles/RC_Regions.zip http://maps.redcross.org/website/Services/Data
 if [ ! -d shapefiles/cb_2014_us_county_500k/ ]; then
   mkdir shapefiles/cb_2014_us_county_500k/
 fi
+echo downloading counties
 curl -o shapefiles/cb_2014_us_county_500k.zip http://www2.census.gov/geo/tiger/GENZ2014/shp/cb_2014_us_county_500k.zip
 unzip shapefiles/cb_2014_us_county_500k.zip -d shapefiles/cb_2014_us_county_500k/
 
@@ -30,4 +32,5 @@ unzip shapefiles/cb_2014_us_county_500k.zip -d shapefiles/cb_2014_us_county_500k
 if [ ! -d shapefiles/ustracts_clipped/ ]; then
   mkdir shapefiles/ustracts_clipped/
 fi
+echo unzipping tracts
 unzip shapefiles/ustracts_clipped.zip -d shapefiles/ustracts_clipped/
