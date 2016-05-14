@@ -18,11 +18,11 @@ Join the [DataKind DC meetup group](http://www.meetup.com/DataKind-DC/) to find 
 * Front-end development: HTML, CS, JS for general functionality and appearance and [mapbox gl js](https://www.mapbox.com/mapbox-gl-js/api/) for interacting with the map
 * General data munging: joining data to shapefiles, clipping and filtering, saving as .zip files, making csv crosswalks, eventually getting and saving Census tract demographic information
  
-### Create and edit shapefiles
-To build a national shapefile of census tracts, download the [state-level files](ftp://ftp2.census.gov/geo/tiger/TIGER2013/TRACT/) and then run [buildnationalshp.sh](scripts/buildnationalshp.sh). Note: This requires [gdal](http://www.gdal.org/index.html) installation and assumes you're in a *nix system. The shapefile .zip is saved on [Google Drive](https://drive.google.com/folderview?id=0B9WCc5VMDAquajlzSG5QcW5DcDg&usp=drive_web&tid=0Bxt-Sxy6HRaxZzhyeFRkUVRvckE).
-* Red Cross shapefiles and boundary definitions [source](http://maps.redcross.org/website/Services/ARC_Services.html)
- * [Chapter boundaries shapefile .zip](http://maps.redcross.org/website/Services/Data/RC_All.zip)
- * [Region boundaries shapefile .zip](http://maps.redcross.org/website/Services/Data/RC_All_REG.zip)
+### Download shapefiles
+* Shapefiles are saved in the shapefiles/ directory, which is gitignored due to size
+* Download [national tract-level shapefile, clipped to water boundaries](https://drive.google.com/folderview?id=0B9WCc5VMDAquajlzSG5QcW5DcDg&usp=drive_web&tid=0Bxt-Sxy6HRaxZzhyeFRkUVRvckE) and save .zip in shapefiles/ directory
+* Run [scripts/downloadShapefiles.sh](scripts/downloadShapefiles.sh) to set up the directory, download Red Cross regions, counties, and unzip shapefiles as needed
+* More Red Cross shapefiles and boundary definitions [source](http://maps.redcross.org/website/Services/ARC_Services.html)
 
 ### Getting and updating data
 * ACS data is obtained from the Census API in [scripts/retrieveCensus.R](scripts/retrieveCensus.R)

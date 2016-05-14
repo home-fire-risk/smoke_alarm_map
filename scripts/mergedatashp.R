@@ -18,8 +18,6 @@ tr <- as.data.frame(table(risk$region_name))
 write.csv(tr, "data/tractsbyregion.csv", row.names=F)
 
 # National counties shapefile
-# download.file("http://www2.census.gov/geo/tiger/GENZ2014/shp/cb_2014_us_county_500k.zip", "shapefiles/cb_2014_us_county_500k.zip")
-# unzip("shapefiles/cb_2014_us_county_500k.zip", exdir="shapefiles/cb_2014_us_county_500k/")
 counties <- readOGR("shapefiles/cb_2014_us_county_500k/","cb_2014_us_county_500k")
 
 # National Census tract shapefile - available at https://drive.google.com/drive/folders/0B9WCc5VMDAquajlzSG5QcW5DcDg
@@ -92,8 +90,9 @@ tractData <- function(risk) {
 		mutate(lowpop = ifelse(population < 100 | households < 20, 1, 0)) %>%
 		arrange(region_code, -risk) %>%
 		group_by(region_code, lowpop) %>%
-		mutate(rank=row_number(), rankn = n_distinct(tract_geoid))%>%
-		mutate(rank = replace(rank, lowpop==1, NA))
+		mutate(rank = rank(desc(risk)), rankn = n_distinct(tract_geoid))
+		
+	riskt <- riskt %>% mutate(rank = replace(rank, lowpop==1, NA))
 	
 	# Saving quantiles as a categorical variable makes it easier to update the map - set the breaks in R, not Mapbox
 	print(quantile(riskt$risk, c(1/6, 2/6, 3/6, 4/6, 5/6)))
