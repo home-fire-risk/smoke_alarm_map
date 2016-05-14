@@ -83,6 +83,8 @@ var map = new mapboxgl.Map({
 
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.Navigation());
+//disable scroll zooming to not interfere with the page
+map.scrollZoom.disable();
 // Add geocoder
 var geocoder = new mapboxgl.Geocoder({
     container: 'geocoder-container'

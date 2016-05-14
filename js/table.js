@@ -87,21 +87,21 @@ var columns = [
         }
         },*/
     {
-        head: 'Risk - smoke alarm',
+        head: 'Risk - no smoke alarm',
         cl: 'num',
         html: function (d) {
             return formatInt(d.risk_1agg);
         }
         },
     {
-        head: 'Risk - fire',
+        head: 'Risk - home fire',
         cl: 'num',
         html: function (d) {
             return formatInt(d.risk_2agg);
         }
         },
     {
-        head: 'Risk - injury',
+        head: 'Risk - fire-related injury',
         cl: 'num',
         html: function (d) {
             return formatInt(d.risk_3agg);
