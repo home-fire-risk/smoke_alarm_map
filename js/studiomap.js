@@ -83,6 +83,8 @@ var map = new mapboxgl.Map({
 
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.Navigation());
+//disable scroll zooming to not interfere with the page
+//map.scrollZoom.disable();
 // Add geocoder
 var geocoder = new mapboxgl.Geocoder({
     container: 'geocoder-container'
@@ -125,21 +127,6 @@ map.on('style.load', function () {
             "features": []
         }
     });
-
-    //need to add a custom marker to style and resize it?
-    /*map.addLayer({
-        "id": "point",
-        "source": "single-point",
-        "type": "symbol",
-        "layout": {
-            "icon-image": "marker-15",
-            "visibility": "visible"
-        },
-        "paint": {
-            "icon-opacity": 1,
-            "icon-color": "#000000"
-        }
-    });*/
 
     map.addLayer({
         "id": "point",
