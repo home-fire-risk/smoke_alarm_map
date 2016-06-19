@@ -1,16 +1,17 @@
 # American Red Cross Smoke Alarm Map Tool
+[View current build](http://home-fire-risk.github.io/smoke_alarm_map/)
 
 ## Big picture
-Goal: help the Red Cross Home Fire Preparedness Campaign target areas for smoke alarm installs. Read more about the models in the [documentation](https://docs.google.com/document/d/1oJN-QwLVqFHOvrRNtW2KEAkNZ-PuFiqTwa8y3iXx1Sg/edit?pref=2&pli=1). Check out the repo [wiki](https://github.com/home-fire-risk/smoke_alarm_map/wiki) for more resources.
-### Sketch of requirements for visualization (working doc)
-* [Visualization requirements](https://docs.google.com/document/d/1K8WiLrH4ex72GTG7o_q8MVZE2zGCPyv8voxk1IVYZ2U)
-* Current build of map: http://home-fire-risk.github.io/smoke_alarm_map/  
+This is the front-end of an open-source project maintained by [DataKind DC](http://www.datakind.org/chapters/datakind-dc) in partnership with the [Red Cross Home Fire Preparedness Campaign](http://www.redcross.org/home-fire-lp2). See the [modeling repo](https://github.com/home-fire-risk/smoke_alarm_models) for more information on the data used here. This web tool presents risk scores at the Census tract level in an interactive map and table for download to help Red Cross employees and volunteers target areas for smoke alarm installs.
+
+Read more about the models in the [documentation](https://docs.google.com/document/d/1oJN-QwLVqFHOvrRNtW2KEAkNZ-PuFiqTwa8y3iXx1Sg/edit?pref=2&pli=1).
 
 ### Tasks
 See [issues](https://github.com/home-fire-risk/smoke_alarm_map/issues) to view tasks that need help. Please feel free to comment with any questions.
 
 ## How to contribute
-Join the [DataKind DC meetup group](http://www.meetup.com/DataKind-DC/) to find out about work sessions. Or, contribute whenever you can.
+Interested in helping? Issues or pull requests are welcome! See below for email addresses to message us directly. Join the [DataKind DC meetup group](http://www.meetup.com/DataKind-DC/) to find out about work sessions and new projects.
+
 ### Skills needed
 * DESIGN!: designing the map itself (mainly Mapbox Studio) as well as general UI/UX design for the tool
 * General mapping and data visualization skills 
