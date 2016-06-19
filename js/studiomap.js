@@ -4,6 +4,7 @@ var RISKLAYERS = ['east1', 'east2', 'east3', 'east4', 'east5', 'east6', 'south1'
 var REGIONS = ['east', 'south', 'midwest', 'west']; //regions to add - saved in separate mapbox files due to upload limit
 //URLS of regional datasets
 var URLS = ['datakinddc.04hkadfo', 'datakinddc.2b90vyhy', 'datakinddc.b0ujw98l', 'datakinddc.cao4jei0'];
+var COLORS = ["#fef0d9", "#fdd49e", "#fdbb84", "#fc8d59", "#e34a33", "#b30000"];
 mapboxgl.accessToken = 'pk.eyJ1IjoiZGF0YWtpbmRkYyIsImEiOiJjaWppcmZtMHcwMnZ2dHlsdDlzenN0MnRqIn0.FsB8WZ_HKhb3mPa1MPXxdw';
 
 //buttons for riskiest tract views
@@ -44,7 +45,7 @@ function tooltips(layers) {
             layers: layers
         });
 
-        if (features.length > 0 ) {
+        if (features.length > 0) {
             //show name and value in sidebar
             document.getElementById('tooltip-risk').innerHTML = Math.round(features[0].properties.risk);
             document.getElementById('tooltip-rank').innerHTML = features[0].properties.rank + "/" + features[0].properties.rankn;
@@ -94,6 +95,7 @@ map.addControl(geocoder);
 map.on('style.load', function () {
 
     //add layers for top rank filtering
+    //style the same as full map
     for (r = 0; r < REGIONS.length; r++) {
         map.addSource(REGIONS[r] + 'src', {
             type: 'vector',
@@ -109,8 +111,29 @@ map.on('style.load', function () {
                 visibility: 'visible'
             },
             paint: {
-                'fill-outline-color': "#ffffff",
-                'fill-color': "#b30000",
+                "fill-outline-color": {
+                    "base": 0.1,
+                    "stops": [
+                        [
+                            12,
+                            "hsla(0, 0%, 0%, 0)"
+                        ],
+                        [
+                            13,
+                            "hsl(0, 0%, 0%)"
+                        ]
+                    ]
+                },
+                'fill-color': {
+                    property: 'riskgrp',
+                    stops: [
+                    [1, COLORS[0]],
+                    [2, COLORS[1]],
+                    [3, COLORS[2]],
+                    [4, COLORS[3]],
+                    [5, COLORS[4]],
+                    [6, COLORS[5]]]
+                },
                 'fill-opacity': 0.5
             },
             //no tracts should match
@@ -148,7 +171,10 @@ map.on('style.load', function () {
     //remove the marker when the search bar is cleared
     geocoder.on('clear', function (ev) {
         console.log('removed')
-        map.getSource('single-point').setData({"coordinates":[null, null], "type": "Point"});
+        map.getSource('single-point').setData({
+            "coordinates": [null, null],
+            "type": "Point"
+        });
     });
 
 });
@@ -196,7 +222,7 @@ $('#statbtns input:radio').click(function (e) {
         //change filter to top n, based on rank attribute in data (ranked within Red Cross regions)
         for (r = 0; r < REGIONS.length; r++) {
             var filtertype = map.getFilter(REGIONS[r] + 'top');
-            map.setFilter(REGIONS[r] + 'top', ['<=', "rank", n]);
+            map.setFilter(REGIONS[r] + 'top', ['all', ['<=', "rank", n], ['==', 'lowpop', 0]]);
 
         }
     }
@@ -215,7 +241,10 @@ function flyToTract(geoid) {
     var tiles = [];
 
     for (var r = 0; r < REGIONS.length; r++) {
-        var results = map.querySourceFeatures(REGIONS[r] + 'src', { sourceLayer: [REGIONS[r]], filter: ['==', 'GEOID', geoid] });
+        var results = map.querySourceFeatures(REGIONS[r] + 'src', {
+            sourceLayer: [REGIONS[r]],
+            filter: ['==', 'GEOID', geoid]
+        });
 
         if (results.length > 0) {
             tiles = tiles.concat(results);
@@ -234,7 +263,10 @@ function flyToTract(geoid) {
             sw: [Math.min(bounds.sw[0], coordinate[0]), Math.max(bounds.sw[1], coordinate[1])],
             ne: [Math.max(bounds.ne[0], coordinate[0]), Math.min(bounds.ne[1], coordinate[1])]
         };
-    }, { sw: [coords[0][0], coords[0][1]], ne: [coords[0][0], coords[0][1]] });
+    }, {
+        sw: [coords[0][0], coords[0][1]],
+        ne: [coords[0][0], coords[0][1]]
+    });
 
     var latLngBounds = new mapboxgl.LngLatBounds(new mapboxgl.LngLat(bounds.sw[0], bounds.sw[1]), new mapboxgl.LngLat(bounds.ne[0], bounds.ne[1]));
 
