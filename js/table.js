@@ -179,11 +179,11 @@ function rows() {
         })
         .attr("id", function (d) {
             return d.head;
-        })
-        .on("click", function (d) {
+        });
+        /*.on("click", function (d) {
             console.log(this.parentNode.id);
             flyToTract(this.parentNode.id);
-        })
+        })*/
 }
 
 function tableInit() {

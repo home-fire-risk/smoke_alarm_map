@@ -21,10 +21,6 @@ p {
     text-align: left;
 }
 
-.about {
-    font-size: 0.9em;
-}
-
 p.copyright {
     margin: 15px 0 0;
 }
@@ -48,10 +44,6 @@ p.copyright {
 
 .navbar-default .navbar-nav > li > a:hover {
     color: #dda89c;
-}
-
-#about {
-    padding-top: 5px;
 }
 
 footer {
@@ -105,10 +97,10 @@ img.logo {
     border: 1px solid #ccc;
     z-index: 100;
     background: #ffffff;
+    margin-top: 75px;
 }
 
 #about {
-    margin-top: 120px;
     width: 60%;
     left: 20%;
 }
@@ -121,19 +113,29 @@ img.logo {
     text-align: center;
 }
 
-#table-section {
-    margin-top: 50px;
+#table-section { 
     width: 94%;
     margin-left: 3%;
     height: 90%;
 }
 
 .divclose {
-    float: right;
-    font-size: 18px;
-    color: #742626;
-    font-weight: 700;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
     margin: 25px;
+    float: right;
+    width: 25px;
+    height: 25px;
+    line-height: 22px;
+    border: 2px solid #f5f5f5;
+    border-radius: 50%;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    background: #742626;
+    box-shadow: 0 0 3px gray;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 
@@ -313,4 +315,12 @@ label {
 #tooltip-tract {
     font-size: 14px;
     margin-bottom: 4px;
+}
+
+/*mobile*/
+
+@media (max-width: 550px) {
+    #sidebar {
+        display: none;
+    }
 }

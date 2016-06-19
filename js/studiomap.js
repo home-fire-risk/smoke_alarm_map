@@ -209,6 +209,8 @@ $('#print').click(function () {
     printWindow.print();
 });
 
+//function flies to tract in map when clicked in table
+//not using due to change that shows table in pop-up div
 function flyToTract(geoid) {
     var tiles = [];
 
