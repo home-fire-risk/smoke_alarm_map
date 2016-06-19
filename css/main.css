@@ -35,7 +35,8 @@ p.copyright {
 .navbar-default,
 .navbar-brand {
     color: #fff !important;
-    font-weight: 100;
+    background-color: #742626;
+    font-weight: 300;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -57,7 +58,7 @@ footer {
 }
 
 footer h3 {
-    font-weight: 100;
+    font-weight: 300;
 }
 
 img.logo {
@@ -113,7 +114,7 @@ img.logo {
     text-align: center;
 }
 
-#table-section { 
+#table-section {
     width: 94%;
     margin-left: 3%;
     height: 90%;
@@ -143,10 +144,6 @@ img.logo {
 
 #map-holder {
     top: 0;
-    /*margin-left: 25px;
-    margin-right: 25px;*/
-    /*margin-top: 25px;
-    margin-bottom: 25px;*/
     height: 100%;
     bottom: 0;
     position: relative;
@@ -317,10 +314,43 @@ label {
     margin-bottom: 4px;
 }
 
+
 /*mobile*/
 
 @media (max-width: 550px) {
     #sidebar {
         display: none;
+    }
+    .popup {
+        position: absolute;
+        border: 1px solid #ccc;
+        z-index: 100;
+        background: #ffffff;
+        margin-top: 50px;
+    }
+    #about,
+    #table-section {
+        width: 100%;
+        overflow-y: scroll;
+    }
+}
+
+@media (max-width: 767px) {
+    .navbar-brand {
+        font-size: 14px;
+    }
+    .navbar-toggle {
+        margin-right: 30px;
+    }
+    .navbar-default,
+    .navbar-collapse {
+        background-color: #742626;
+        color: #fff;
+    }
+    .navbar-default .navbar-toggle .icon-bar {
+        background-color: #fff;
+    }
+    .navbar-default .navbar-nav > li > a {
+        color: #fff;
     }
 }
