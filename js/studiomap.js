@@ -76,8 +76,8 @@ makebtns();
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/datakinddc/cijisuzms004z8wlxb9m6zh0y',
-    zoom: 9,
-    center: [-77.014576, 38.899396],
+    zoom: 4,
+    center: [-97, 38],
     minZoom: 3,
     preserveDrawingBuffer: true
 });
