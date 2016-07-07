@@ -1,5 +1,5 @@
 # American Red Cross Smoke Alarm Map Tool
-[View current build](http://home-fire-risk.github.io/smoke_alarm_map/)
+[View current build](https://home-fire-risk.github.io/smoke_alarm_map/)
 
 ## Big picture
 This is the front-end of an open-source project maintained by [DataKind DC](http://www.datakind.org/chapters/datakind-dc) in partnership with the [Red Cross Home Fire Preparedness Campaign](http://www.redcross.org/home-fire-lp2). See the [modeling repo](https://github.com/home-fire-risk/smoke_alarm_models) for more information on the data used here. This web tool presents risk scores at the Census tract level in an interactive map and table for download to help Red Cross employees and volunteers target areas for smoke alarm installs.
