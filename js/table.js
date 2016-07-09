@@ -1,9 +1,6 @@
 var data_url = "data/tabletracts.csv";
 var selecter = d3.selectAll("#regionselect");
 var data, data_main;
-var formatInt = d3.format(',.0f');
-var formatMoney = d3.format('$,.0f');
-var formatPct = d3.format('%')
 
 function dropdown() {
     //populate dropdown with region names
@@ -25,6 +22,16 @@ function dropdown() {
         });
 }
 
+//function to format decimal proportions as percentages for display, but export raw data
+jQuery.fn.dataTable.render.percent = function () {
+    return function (data, type, row) {
+        if (type == "export") {
+            return data;
+        } else {
+            return Math.round(data * 100) + "%";
+        }
+    }
+}
 
 $(document).ready(function () {
     d3.csv(data_url, function (error, rows) {
@@ -33,91 +40,75 @@ $(document).ready(function () {
 
         dropdown();
 
-        var table = $('#example').DataTable({
+        var table = $('#datatable').DataTable({
             data: data_main,
             "deferRender": true,
             "columns": [
                 {
                     "data": "region",
                     "visible": false
-                    },
-                {
-                    "data": "rank"
-                    },
-                {
+                }, {
+                    "data": "tract_geoid",
+                    "visible": false
+                }, {
+                    "data": "rank",
+                    "render": $.fn.dataTable.render.number(',', '.', 0)
+                }, {
                     "data": "risk",
                     "render": $.fn.dataTable.render.number(',', '.', 0)
-                        /*"render": function (data) {
-                            return formatInt(data);
-                        }*/
-                    },
-                {
+                }, {
                     "data": "name_tract"
-                    },
-                {
+                }, {
                     "data": "county"
-                    },
-                {
+                }, {
                     "data": "households",
                     "render": $.fn.dataTable.render.number(',', '.', 0)
-                        /*"render": function (data) {
-                            return formatInt(data);
-                        }*/
-                    },
-                {
+                }, {
                     "data": "medianinc_hh",
-                    //"render": $.fn.dataTable.render.number(',', '.', 0, '$')
-                    "render": function (data) {
-                        return formatMoney(data);
-                    }
-                    },
-                {
+                    "render": $.fn.dataTable.render.number(',', '.', 0, '$')
+                }, {
                     "data": "hispanic",
-                    "render": function (data) {
-                        return formatPct(data);
-                    }
-                    },
-                {
+                    "render": $.fn.dataTable.render.percent()
+                }, {
                     "data": "white",
-                    "render": function (data) {
-                        return formatPct(data);
-                    }
-                    },
-                {
+                    "render": $.fn.dataTable.render.percent()
+                }, {
                     "data": "black",
-                    "render": function (data) {
-                        return formatPct(data);
-                    }
-                    }, {
+                    "render": $.fn.dataTable.render.percent()
+                }, {
                     "data": "risk_1agg",
                     "render": $.fn.dataTable.render.number(',', '.', 0)
-                        /*"render": function (data) {
-                            return formatInt(data);
-                        }*/
-                    }, {
+                }, {
                     "data": "risk_2agg",
                     "render": $.fn.dataTable.render.number(',', '.', 0)
-                        /*"render": function (data) {
-                            return formatInt(data);
-                        }*/
-                    }, {
+                }, {
                     "data": "risk_3agg",
                     "render": $.fn.dataTable.render.number(',', '.', 0)
-                        /*"render": function (data) {
-                            return formatInt(data);
-                        }*/
                     }],
             "order": [[0, "asc"]],
             "scrollY": "500px",
             "scrollCollapse": true,
-            fixedHeader: {
-                header: true,
-                footer: false
-            }
+            "scrollX": true,
+            "fixedHeader": {
+                "header": true,
+                "footer": false
+            },
+            dom: 'Bfrtip',
+            buttons: ['copy', {
+                "extend": "csv",
+                "exportOptions": {
+                    "orthogonal": "export"
+                }
+            }, {
+                "extend": "excel",
+                "exportOptions": {
+                    "orthogonal": "export"
+                }
+                }, 'pdf', 'print']
         }).columns(0).search("ARC of Alaska Region").draw();
 
+        //on changing the dropdown, filter table to that region
         $('#regionselect').on('change', function () {
-            //console.log($(this).val())
             table.columns(0).search(this.value).draw();
         });
 
