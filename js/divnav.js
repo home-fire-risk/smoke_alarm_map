@@ -12,13 +12,13 @@ $(document).ready(function () {
         }
     });
 
-    $('#tablelink').click(function () {
+    /*$('#tablelink').click(function () {
         if ($("#table-section").is(":visible")) {
             $('#table-section').hide();
         } else {
             $('#table-section').show();
         }
-    });
+    });*/
 
     $('.divclose').click(function () {
         ($(this).parent()).hide();

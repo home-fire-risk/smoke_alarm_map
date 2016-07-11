@@ -93,6 +93,10 @@ img.logo {
 
 /*popup divs - about and table*/
 
+.main {
+    margin-top: 50px;
+}
+
 .popup {
     position: absolute;
     border: 1px solid #ccc;
@@ -118,6 +122,11 @@ img.logo {
     width: 94%;
     margin-left: 3%;
     height: 90%;
+}
+
+
+#table-holder {
+    margin: 25px;
 }
 
 .divclose {
@@ -313,7 +322,6 @@ label {
     font-size: 14px;
     margin-bottom: 4px;
 }
-
 
 /*mobile*/
 
