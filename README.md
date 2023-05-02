@@ -1,6 +1,9 @@
 # American Red Cross Smoke Alarm Map Tool
 [View current build](https://home-fire-risk.github.io/smoke_alarm_map/)
 
+## NOTE
+This project is no longer under active development. See [In the Spirit of Continuous Improvement: Revisiting the American Red Cross Fire Risk Map ](https://www.datakind.org/blog/in-the-spirit-of-continuous-improvement-revisiting-the-american-red-cross-fire-risk-map) for information about the 2020 update.
+
 ## Big picture
 This is the front-end of an open-source project maintained by [DataKind DC](http://www.datakind.org/chapters/datakind-dc) in partnership with the [Red Cross Home Fire Preparedness Campaign](http://www.redcross.org/home-fire-lp2). See the [modeling repo](https://github.com/home-fire-risk/smoke_alarm_models) for more information on the data used here. This web tool presents risk scores at the Census tract level in an interactive map and table for download to help Red Cross employees and volunteers target areas for smoke alarm installs.
 
@@ -38,4 +41,3 @@ $ bash scripts/updateMapbox.sh
 ```
  * Alternatively, you can update the files from the Mapbox website by manually replacing them
 
-For conversations/questions that are awkward to carry out using GitHub issues, send an email to DataKind Red Cross core volunteers Hannah Recht (hrecht2@gmail.com) and Andrew Brooks (andrewbrooksct@gmail.com) and one of us will follow up with you.
